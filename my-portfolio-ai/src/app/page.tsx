@@ -4,13 +4,14 @@
 import { useState, useCallback } from "react";
 import FaceDetection from "@/components/FaceDetection";
 import { motion } from "framer-motion";
-import Link from "next/link";
-import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
-  type Phase = "idle" | "scanning" | "voice" | "home";
+  type Phase = "idle" | "scanning" | "voice";
   const [phase, setPhase] = useState<Phase>("idle");
   const [speaking, setSpeaking] = useState(false);
+  const router = useRouter();
+
   const welcomeText =
     "Welcome to my personal portfolio, where technology meets creativity.";
 
@@ -22,7 +23,7 @@ export default function Page() {
         setSpeaking(true);
         a.onended = () => {
           setSpeaking(false);
-          setPhase("home");
+          router.push("/home");
         };
         await a.play().catch((err) => console.warn(err));
         return;
@@ -30,7 +31,7 @@ export default function Page() {
     } catch {}
 
     if (!("speechSynthesis" in window)) {
-      setPhase("home");
+      router.push("/home");
       return;
     }
     const synth = window.speechSynthesis;
@@ -60,7 +61,7 @@ export default function Page() {
       u.onstart = () => setSpeaking(true);
       u.onend = () => {
         setSpeaking(false);
-        setPhase("home");
+        router.push("/home");
       };
       synth.speak(u);
     };
@@ -74,7 +75,7 @@ export default function Page() {
     } else {
       speakNow(voices);
     }
-  }, []);
+  }, [router]);
 
   const handleDetected = useCallback(() => {
     setPhase("voice");
@@ -82,10 +83,6 @@ export default function Page() {
       playWelcome();
     }, 200);
   }, [playWelcome]);
-
-  const handleStartClick = () => {
-    setPhase("scanning");
-  };
 
   return (
     <main className="min-h-screen dark:bg-gray-900 flex items-center justify-center">
@@ -96,10 +93,10 @@ export default function Page() {
             animate={{ opacity: 1, y: 0 }}
             className="text-3xl sm:text-5xl font-bold text-green-700 mb-6"
           >
-            Wellcome To My Portfolio
+            Welcome To My Portfolio
           </motion.h1>
           <motion.button
-            onClick={handleStartClick}
+            onClick={() => setPhase("scanning")}
             whileTap={{ scale: 0.98 }}
             className="px-8 py-4 bg-green-600 text-white rounded-full shadow-lg"
           >
@@ -126,58 +123,6 @@ export default function Page() {
           <p className="text-sm text-gray-500 dark:text-gray-400">
             {speaking ? "Speaking..." : "Preparing audio..."}
           </p>
-        </div>
-      )}
-
-      {phase === "home" && (
-        <div className="text-center px-6">
-          <Image
-            src="/assets/profile.jpg"
-            alt="profile"
-            width={128}
-            height={128}
-            className="rounded-full mx-auto shadow-lg border-4 border-white mb-4 object-cover"
-          />
-          <motion.h2
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-2xl font-semibold text-gray-800 dark:text-white"
-          >
-            Aqsa Shah
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="mt-2 text-gray-600 dark:text-gray-300 max-w-lg mx-auto"
-          >
-            Welcome to my personal portfolio — where{" "}
-            <span className="font-semibold text-green-600 dark:text-green-300">
-              technology
-            </span>{" "}
-            meets{" "}
-            <span className="font-semibold text-green-600 dark:text-green-300">
-              creativity
-            </span>
-            .
-          </motion.p>
-
-          <div className="mt-6 flex gap-4 justify-center">
-            <Link
-              href="/projects"
-              className="px-4 py-2 bg-green-600 text-white rounded-full"
-            >
-              View Projects
-            </Link>
-            <button
-              onClick={() => {
-                setPhase("scanning");
-              }}
-              className="px-4 py-2 bg-white border rounded-full"
-            >
-              Scan Again
-            </button>
-          </div>
         </div>
       )}
     </main>

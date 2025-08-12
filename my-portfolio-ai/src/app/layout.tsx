@@ -4,6 +4,7 @@ import "./globals.css";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ThemeToggle from "@/components/ThemeToggle";
+import Navbar from "@/components/Navbar";
 
 
 const geistSans = Geist({
@@ -31,12 +32,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Navbar />
         {children}
         <AnimatedBackground />
         <header className="flex justify-end p-4">
           <ThemeToggle />
         </header>
-
         <Footer />
       </body>
     </html>

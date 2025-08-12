@@ -38,9 +38,9 @@ export default function AnimatedBackground() {
           },
         },
         particles: {
-          color: { value: "#16a34a" },
+          color: { value: "#8b5cf6" }, // purple color
           links: {
-            color: "#16a34a",
+            color: "#8b5cf6", // purple color
             distance: 150,
             enable: true,
             opacity: 0.5,
