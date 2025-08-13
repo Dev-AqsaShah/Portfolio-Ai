@@ -1,71 +1,76 @@
 "use client";
+import React from "react";
+import { motion } from "framer-motion";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+const aboutData = [
+  { key: "Full Name", value: "Aqsa Shah" },
+  { key: "Horoscope", value: "Virgo" },
+  { key: "Age", value: "22 years" },
+  { key: "Non-Tech Hobby", value: "Walking, Vloging" },
+  { key: "Role", value: "Frontend Developer" },
+  { key: "Location", value: "Hyderabad, Sindh" },
+  { key: "Languages", value: "English, Urdu, Sindhi" },
+  { key: "Bachelors", value: "Computer Science" },
+  { key: "Institute", value: "University of Sindh Jamshoro" },
+  { key: "Diploma", value: "Governor IT Initiative & PIAIC" },
+  { key: "Experience", value: "2 years" },
+  { key: "Currently Learning", value: "OpenAI Agents SDK" },
+  { key: "Future Goal", value: "Full-stack AI Developer" },
+  { key: "After SDK Goal", value: "MCP Server" },
+];
 
 export default function About() {
-  const [showDetails, setShowDetails] = useState(false);
-
   return (
-    <div className="flex flex-col items-center text-center p-6 max-w-2xl mx-auto">
-      {/* GIF Image */}
-      <motion.img
-        src="/assets/innovation.gif"
-        alt="Aqsa Animation"
-        className="w-60 h-60 object-contain mb-4 rounded-lg shadow-lg"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      />
-
-      {/* Unique Intro */}
-      <motion.h2
-        className="text-2xl font-bold mb-2 text-purple-600"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4 }}
+    <div className=" md:p-12 min-h-screen text-black">
+      {/* Top Purple Bar */}
+      <motion.div
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        className="w-screen bg-purple-600  text-center py-3 "
       >
-        Hey, Im Aqsa Shah 👋
-      </motion.h2>
+        <motion.span
+          initial={{ x: "-100%" }}
+          animate={{ x: "100%" }}
+          transition={{
+            repeat: Infinity,
+            repeatType: "mirror",
+            duration: 2,
+          }}
+          className="inline-block whitespace-nowrap font-semibold"
+        >
+          YOU ARE IN ABOUT SECTION
+        </motion.span>
+      </motion.div>
 
-      <motion.p
-        className="text-gray-700 text-lg mb-4"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6 }}
-      >
-        A passionate creator who turns imagination into interactive experiences.
-        With a blend of creativity and code, I bring ideas to life—pixel by
-        pixel, frame by frame.
-      </motion.p>
-
-      {/* Details Button */}
-      <motion.button
-        className="px-5 py-2 bg-purple-600 text-white rounded-full shadow-md hover:bg-purple-700 transition"
-        onClick={() => setShowDetails(!showDetails)}
-        whileTap={{ scale: 0.95 }}
-      >
-        {showDetails ? "Hide Details" : "Details"}
-      </motion.button>
-
-      {/* Details Section */}
-      <AnimatePresence>
-        {showDetails && (
+      {/* Info Boxes */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 justify-items-center mt-8">
+        {aboutData.map((item, index) => (
           <motion.div
-            className="mt-4 p-4 bg-gray-100 rounded-lg shadow-md text-left w-full"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.5 }}
+            key={index}
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.4, delay: index * 0.05 }}
+            whileHover={{ scale: 1.1, rotate: 3 }}
+            className="relative w-36 sm:w-40 h-14 sm:h-16 flex items-center justify-center 
+              rounded-full cursor-pointer overflow-hidden group 
+              border-2 border-black shadow-[0_0_20px_5px_rgba(168,85,247,0.8)] 
+              bg-purple-800 text-black text-sm sm:text-base
+              hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-500
+              transition-all duration-300"
           >
-            <p><strong>Full Name:</strong> Aqsa Shah</p>
-            <p><strong>Profession:</strong> IT Student & Creative Developer</p>
-            <p><strong>Skills:</strong> TypeScript, Next.js, Tailwind CSS, ShadCN, Git, Docker</p>
-            <p><strong>Passion:</strong> Creating engaging and animated web experiences</p>
-            <p><strong>Fun Fact:</strong> I can turn even the simplest idea into something visually stunning 🚀</p>
+            {/* Key */}
+            <span className="font-semibold group-hover:opacity-0 transition-opacity duration-300 text-center px-2">
+              {item.key}
+            </span>
+            {/* Value on hover */}
+            <span className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-bold text-center px-2">
+              {item.value}
+            </span>
           </motion.div>
-        )}
-      </AnimatePresence>
+        ))}
+      </div>
     </div>
   );
 }
+

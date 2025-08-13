@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import { useState, useEffect } from "react";
 import AboutPage from "@/app/about/page";
 import SkillsPage from "@/app/skills/page";
@@ -60,7 +59,7 @@ export default function HomePage() {
           variants={fadeInVariant}
           className="max-w-xl text-center md:text-left"
         >
-          <h1 className="text-4xl md:text-6xl font-bold text-purple-800 dark:text-green-400">
+          <h1 className="text-4xl md:text-6xl font-bold text-purple-800 ">
             {displayText}
             <span className="animate-pulse">|</span>
           </h1>
