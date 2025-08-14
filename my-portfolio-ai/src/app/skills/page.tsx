@@ -39,32 +39,48 @@ const skills = [
 
 export default function SkillsPage() {
   return (
-    <main className="bg-white dark:bg-gray-900 min-h-screen relative overflow-hidden">
+    <main className="min-h-screen relative overflow-hidden">
       <Navbar />
 
-      {/* Top Purple Banner */}
-      <div className="bg-purple-600 text-white py-3 text-center text-lg font-medium shadow-md">
-        You are in my skill page now
-      </div>
+      {/* Top Purple Banner with animation */}
+      <motion.div
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        className="w-screen bg-purple-600 text-center py-3 overflow-hidden"
+      >
+        <motion.span
+          initial={{ x: "-100%" }}
+          animate={{ x: "100%" }}
+          transition={{
+            repeat: Infinity,
+            repeatType: "mirror",
+            duration: 2,
+          }}
+          className="inline-block whitespace-nowrap font-semibold text-black"
+        >
+          YOU ARE IN MY SKILLS PAGE NOW
+        </motion.span>
+      </motion.div>
 
       <section className="relative py-20 px-6 sm:px-12 flex justify-center items-center">
         <div className="flex flex-wrap justify-center gap-8 max-w-5xl">
           {skills.map((skill, i) => (
             <motion.div
               key={i}
-              className="w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center rounded-full bg-purple-200 dark:bg-purple-800 text-purple-800 dark:text-purple-200 text-4xl shadow-lg relative group"
+              className="w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center rounded-full 
+                         bg-purple-800 text-white text-3xl shadow-lg relative group"
               whileHover={{ scale: 1.1 }}
-              animate={{
-                y: [0, -10, 0],
-              }}
+              animate={{ y: [8, -12, 15] }}
               transition={{
                 repeat: Infinity,
-                duration: 3 + i * 0.2,
+                duration: 2.5 + i * 0.15,
                 ease: "easeInOut",
               }}
             >
               {skill.icon}
-              <span className="absolute bottom-[-30px] opacity-0 group-hover:opacity-100 text-sm font-medium text-gray-700 dark:text-gray-300 transition">
+              <span className="absolute bottom-[-28px] opacity-0 group-hover:opacity-100 
+                               text-sm font-medium text-white transition">
                 {skill.name}
               </span>
             </motion.div>
