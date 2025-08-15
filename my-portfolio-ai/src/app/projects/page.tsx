@@ -1,41 +1,234 @@
 "use client";
 import Navbar from "@/components/Navbar";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { FaArrowLeft, FaArrowRight, FaTimes } from "react-icons/fa";
+import Image from "next/image";
 
 export default function ProjectsPage() {
   const projects = [
-    { id: 1, title: "Interactive Portfolio", desc: "Face + Voice powered portfolio" },
-    { id: 2, title: "Green Gallery Store", desc: "E-commerce hero & UI" },
-    { id: 3, title: "Number Guessing Game", desc: "Fun JS game with confetti" },
+    {
+      id: 1,
+      title: "Interactive Portfolio",
+      desc: "Face + Voice powered portfolio",
+      link: "https://your-portfolio.vercel.app",
+      images: [
+        "/images/project1-1.png",
+        "/images/project1-2.png",
+        "/images/project1-3.png",
+        "/images/project1-4.png",
+      ],
+    },
+    {
+      id: 2,
+      title: "Green Gallery Store",
+      desc: "E-commerce hero & UI",
+      link: "https://green-gallery.vercel.app",
+      images: [
+        "/images/project2-1.png",
+        "/images/project2-2.png",
+        "/images/project2-3.png",
+        "/images/project2-4.png",
+      ],
+    },
+    {
+      id: 3,
+      title: "Interactive Portfolio",
+      desc: "Face + Voice powered portfolio",
+      link: "https://your-portfolio.vercel.app",
+      images: [
+        "/images/project1-1.png",
+        "/images/project1-2.png",
+        "/images/project1-3.png",
+        "/images/project1-4.png",
+      ],
+    },
+    {
+      id: 4,
+      title: "Green Gallery Store",
+      desc: "E-commerce hero & UI",
+      link: "https://green-gallery.vercel.app",
+      images: [
+        "/images/project2-1.png",
+        "/images/project2-2.png",
+        "/images/project2-3.png",
+        "/images/project2-4.png",
+      ],
+    },
+    {
+      id: 5,
+      title: "Interactive Portfolio",
+      desc: "Face + Voice powered portfolio",
+      link: "https://your-portfolio.vercel.app",
+      images: [
+        "/images/project1-1.png",
+        "/images/project1-2.png",
+        "/images/project1-3.png",
+        "/images/project1-4.png",
+      ],
+    },
+    {
+      id: 6,
+      title: "Green Gallery Store",
+      desc: "E-commerce hero & UI",
+      link: "https://green-gallery.vercel.app",
+      images: [
+        "/images/project2-1.png",
+        "/images/project2-2.png",
+        "/images/project2-3.png",
+        "/images/project2-4.png",
+      ],
+    },
   ];
 
-  return (
-    <main>
-      <Navbar />
-      <section className="py-20 px-6 sm:px-12 bg-gray-50">
-        <div className="max-w-6xl mx-auto">
-          <motion.h2
-            className="text-3xl sm:text-4xl font-semibold text-gray-800 mb-8 text-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
-            Projects
-          </motion.h2>
+  const [activeImages, setActiveImages] = useState<string[] | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            {projects.map((p) => (
+  const nextImage = () =>
+    setCurrentIndex((prev) =>
+      prev + 1 < (activeImages?.length || 0) ? prev + 1 : 0
+    );
+  const prevImage = () =>
+    setCurrentIndex((prev) =>
+      prev - 1 >= 0 ? prev - 1 : (activeImages?.length || 0) - 1
+    );
+
+  return (
+    <main className="relative min-h-screen">
+      <Navbar />
+
+      {/* Top Purple Banner */}
+      <div className="mt-16 bg-purple-600 text-black py-3 text-center text-lg font-bold shadow-md relative overflow-hidden">
+        <motion.span
+          initial={{ x: "-100%" }}
+          animate={{ x: "100%" }}
+          transition={{
+            repeat: Infinity,
+            duration: 4,
+            ease: "linear",
+          }}
+          className="inline-block whitespace-nowrap"
+        >
+          YOU ARE IN MY PROJECTS
+        </motion.span>
+      </div>
+
+      {/* Timeline */}
+      <section className="relative py-16 px-6 sm:px-12">
+        <div className="max-w-5xl mx-auto relative">
+          {/* Purple center line */}
+          <div className="absolute left-1/2 top-0 w-1 bg-purple-500 h-full transform -translate-x-1/2"></div>
+
+          {/* Project Cards */}
+          {projects.map((p, i) => {
+            const isLeft = i % 2 === 0;
+
+            return (
               <motion.div
                 key={p.id}
-                className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition"
-                whileHover={{ y: -6 }}
+                initial={{ x: isLeft ? -100 : 100, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                viewport={{ once: false, amount: 0.3 }} // 🔹 Repeat animation on every scroll
+                transition={{ duration: 0.6 }}
+                className={`mb-16 flex items-center w-full ${
+                  isLeft ? "justify-start" : "justify-end"
+                }`}
               >
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">{p.title}</h3>
-                <p className="text-gray-600">{p.desc}</p>
+                <div
+                  className={`relative border-4 bg-purple-800 text-purple-300 p-6 w-full sm:w-5/12 shadow-lg rounded-2xl ${
+                    isLeft ? "mr-auto" : "ml-auto"
+                  } border-2 border-transparent bg-clip-padding`}
+                  style={{
+                    borderImage: "linear-gradient(45deg, #a855f7, #ec4899) 1",
+                    boxShadow: "30px 30px 30px rgba(168,85,247,0.5)",
+                  }}
+                >
+                  {/* Dot on timeline */}
+                  <span
+                    className="absolute top-6 w-5 h-5 rounded-full bg-purple-600 border-4 border-white"
+                    style={{
+                      left: isLeft ? "calc(100% + 0.6rem)" : "auto",
+                      right: isLeft ? "auto" : "calc(100% + 0.6rem)",
+                    }}
+                  ></span>
+
+                  <h3 className="text-xl font-semibold mb-2">{p.title}</h3>
+                  <p className="mb-4 opacity-90">{p.desc}</p>
+
+                  <div className="flex gap-3">
+                    {/* View Live Button */}
+                    <motion.a
+                      href={p.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="border-2 border-purple-900 inline-block px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full font-bold text-purple-900 shadow-lg hover:shadow-purple-500/50 transition"
+                    >
+                      View Live
+                    </motion.a>
+
+                    {/* View Images Button */}
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => {
+                        setActiveImages(p.images);
+                        setCurrentIndex(0);
+                      }}
+                      className="border-2 border-purple-900 text-purple-900 px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full font-bold shadow-lg hover:shadow-pink-500/50 transition"
+                    >
+                      View Images
+                    </motion.button>
+                  </div>
+                </div>
               </motion.div>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </section>
+
+      {/* Image Slider Overlay */}
+      <AnimatePresence>
+        {activeImages && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black bg-opacity-80 flex flex-col justify-center items-center z-50 p-4"
+          >
+            <button
+              className="absolute top-6 right-6 text-white text-2xl"
+              onClick={() => setActiveImages(null)}
+            >
+              <FaTimes />
+            </button>
+
+            <div className="relative w-full max-w-3xl">
+              <Image
+                src={activeImages[currentIndex]}
+                alt="Project"
+                width={1200}
+                height={800}
+                className="w-full h-auto rounded-lg"
+                priority
+              />
+              <button
+                className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-lg"
+                onClick={prevImage}
+              >
+                <FaArrowLeft />
+              </button>
+              <button
+                className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-lg"
+                onClick={nextImage}
+              >
+                <FaArrowRight />
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
