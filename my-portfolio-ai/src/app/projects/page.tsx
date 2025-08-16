@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { FaArrowLeft, FaArrowRight, FaTimes } from "react-icons/fa";
 import Image from "next/image";
-
+import { button } from "framer-motion/client";
 
 export default function ProjectsPage() {
   const projects = [
@@ -32,7 +32,7 @@ export default function ProjectsPage() {
         "/images/project2-4.png",
       ],
     },
-     {
+    {
       id: 3,
       title: "Interactive Portfolio",
       desc: "Face + Voice powered portfolio",
@@ -56,7 +56,7 @@ export default function ProjectsPage() {
         "/images/project2-4.png",
       ],
     },
-     {
+    {
       id: 5,
       title: "Interactive Portfolio",
       desc: "Face + Voice powered portfolio",
@@ -80,7 +80,6 @@ export default function ProjectsPage() {
         "/images/project2-4.png",
       ],
     },
-    // ... Add remaining projects similarly
   ];
 
   const [activeImages, setActiveImages] = useState<string[] | null>(null);
@@ -96,11 +95,20 @@ export default function ProjectsPage() {
     );
 
   return (
-    <main className="relative min-h-screen ">
+    <main className="relative min-h-screen">
       <Navbar />
 
-      {/* Top Purple Banner */}
+      {/* Top Purple Banner with animated lines */}
       <div className="mt-16 bg-purple-600 text-black py-3 text-center text-lg font-bold shadow-md relative overflow-hidden">
+        
+        {/* 🔹 Top animated line */}
+        <motion.div
+          initial={{ x: "-100%" }}
+          animate={{ x: "100%" }}
+          transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
+          className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-600"
+        />
+
         <motion.span
           initial={{ x: "-100%" }}
           animate={{ x: "100%" }}
@@ -113,6 +121,14 @@ export default function ProjectsPage() {
         >
           YOU ARE IN MY PROJECTS
         </motion.span>
+
+        {/* 🔹 Bottom animated line */}
+        <motion.div
+          initial={{ x: "-100%" }}
+          animate={{ x: "100%" }}
+          transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
+          className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-600"
+        />
       </div>
 
       {/* Timeline */}
@@ -130,14 +146,14 @@ export default function ProjectsPage() {
                 key={p.id}
                 initial={{ x: isLeft ? -100 : 100, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
+                viewport={{ once: false, amount: 0.3 }}
                 transition={{ duration: 0.6 }}
-                className={`mb-16 flex items-center w-full  ${
+                className={`mb-16 flex items-center w-full ${
                   isLeft ? "justify-start" : "justify-end"
                 }`}
               >
                 <div
-                  className={`relative border-4  bg-purple-800 text-purple-300  p-6 w-full sm:w-5/12 shadow-lg  ${
+                  className={`relative border-4 bg-purple-800 text-purple-300 p-6 w-full sm:w-5/12 shadow-lg ${
                     isLeft ? "mr-auto" : "ml-auto"
                   } border-2 border-transparent bg-clip-padding`}
                   style={{
@@ -170,7 +186,7 @@ export default function ProjectsPage() {
                       View Live
                     </motion.a>
 
-                    {/* View Image Button */}
+                    {/* View Images Button */}
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
@@ -178,7 +194,7 @@ export default function ProjectsPage() {
                         setActiveImages(p.images);
                         setCurrentIndex(0);
                       }}
-                      className="border-2 border-purple-900 text-purple-900  px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full font-bold shadow-lg hover:shadow-pink-500/50 transition"
+                      className="border-2 border-purple-900 text-purple-900 px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full font-bold shadow-lg hover:shadow-pink-500/50 transition"
                     >
                       View Images
                     </motion.button>
@@ -207,14 +223,14 @@ export default function ProjectsPage() {
             </button>
 
             <div className="relative w-full max-w-3xl">
-                <Image
-    src={activeImages[currentIndex]}
-    alt="Project"
-    width={1200} // large enough for desktop
-    height={800}
-    className="w-full h-auto rounded-lg"
-    priority
-  />
+              <Image
+                src={activeImages[currentIndex]}
+                alt="Project"
+                width={1200}
+                height={800}
+                className="w-full h-auto rounded-lg"
+                priority
+              />
               <button
                 className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-lg"
                 onClick={prevImage}

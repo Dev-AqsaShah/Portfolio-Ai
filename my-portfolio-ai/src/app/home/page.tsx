@@ -72,7 +72,7 @@ export default function HomePage() {
           <div className="mt-6 flex gap-4 justify-center md:justify-start">
             <button
               onClick={() =>
-                window.open("https://tumhara-streamlit-link.com", "_blank")
+                window.open("https://dev-aqsashah-portfolio-assistant-app-3jykbz.streamlit.app/", "_blank")
               }
               className="px-6 py-3 bg-purple-700 text-purple-300 rounded-full shadow-lg hover:bg-purple-400 hover:text-purple-800 transition-transform hover:scale-105"
             >
