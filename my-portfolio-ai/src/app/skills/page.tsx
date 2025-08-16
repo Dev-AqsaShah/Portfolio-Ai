@@ -42,13 +42,17 @@ export default function SkillsPage() {
     <main className="min-h-screen relative overflow-hidden">
       <Navbar />
 
-      {/* Top Purple Banner with animation */}
-      <motion.div
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        className="w-screen bg-purple-600 text-center py-3 overflow-hidden"
-      >
+      {/* Top Purple Banner with animated lines */}
+      <div className="w-screen bg-purple-600 text-center py-3 overflow-hidden relative">
+        
+        {/* 🔹 Top animated line */}
+        <motion.div
+          initial={{ x: "-100%" }}
+          animate={{ x: "100%" }}
+          transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
+          className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-600"
+        />
+
         <motion.span
           initial={{ x: "-100%" }}
           animate={{ x: "100%" }}
@@ -61,7 +65,15 @@ export default function SkillsPage() {
         >
           YOU ARE IN MY SKILLS PAGE NOW
         </motion.span>
-      </motion.div>
+
+        {/* 🔹 Bottom animated line */}
+        <motion.div
+          initial={{ x: "-100%" }}
+          animate={{ x: "100%" }}
+          transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
+          className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-600"
+        />
+      </div>
 
       <section className="relative py-20 px-6 sm:px-12 flex justify-center items-center">
         <div className="flex flex-wrap justify-center gap-8 max-w-5xl">

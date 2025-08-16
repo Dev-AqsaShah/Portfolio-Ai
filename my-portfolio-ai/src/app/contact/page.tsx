@@ -1,75 +1,100 @@
 "use client";
 import Navbar from "@/components/Navbar";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import {
+  FaInstagram,
+  FaSnapchatGhost,
+  FaTiktok,
+  FaYoutube,
+  FaDiscord,
+  FaLinkedin,
+  FaEnvelope,
+  FaWhatsapp,
+  FaGithub,
+  FaTelegramPlane,
+  FaFacebook,
+} from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const socialLinks = [
+    { name: "Instagram", icon: <FaInstagram />, url: "https://instagram.com/yourusername", color: "from-pink-500 to-yellow-500" },
+    { name: "Snapchat", icon: <FaSnapchatGhost />, url: "https://snapchat.com/add/yourusername", color: "from-yellow-400 to-yellow-300" },
+    { name: "Gmail", icon: <FaEnvelope />, url: "mailto:youremail@gmail.com", color: "from-red-500 to-orange-500" },
+    { name: "TikTok", icon: <FaTiktok />, url: "https://tiktok.com/@yourusername", color: "from-gray-900 to-pink-600" },
+    { name: "YouTube", icon: <FaYoutube />, url: "https://youtube.com/@yourchannel", color: "from-red-600 to-red-400" },
+    { name: "Discord", icon: <FaDiscord />, url: "https://discord.gg/yourinvite", color: "from-indigo-500 to-blue-500" },
+    { name: "LinkedIn", icon: <FaLinkedin />, url: "https://linkedin.com/in/yourusername", color: "from-blue-600 to-blue-400" },
+    { name: "WhatsApp", icon: <FaWhatsapp />, url: "https://wa.me/923001234567", color: "from-green-500 to-green-400" },
+    { name: "GitHub", icon: <FaGithub />, url: "https://github.com/yourusername", color: "from-gray-800 to-gray-700" },
+    { name: "Twitter (X)", icon: <FaXTwitter />, url: "https://twitter.com/yourusername", color: "from-black to-gray-800" },
+    { name: "Telegram", icon: <FaTelegramPlane />, url: "https://t.me/yourusername", color: "from-blue-400 to-sky-500" },
+    { name: "Facebook", icon: <FaFacebook />, url: "https://facebook.com/yourusername", color: "from-blue-700 to-blue-500" },
+  ];
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    alert(`Thanks ${formData.name}, I will get back to you soon!`);
-    setFormData({ name: "", email: "", message: "" });
+  const floatingRotation = {
+    animate: {
+      rotate: [0, 3, -3, 0],
+      y: [0, -6, 0, 6, 0],
+      transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+    },
   };
 
   return (
     <main>
       <Navbar />
-      <section className="py-20 px-6 sm:px-12 bg-gray-50">
-        <div className="max-w-3xl mx-auto">
-          <motion.h2
-            className="text-3xl sm:text-4xl font-semibold text-gray-800 mb-8 text-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
-            Contact Me
-          </motion.h2>
 
-          <motion.form
-            onSubmit={handleSubmit}
-            className="bg-white p-8 rounded-2xl shadow-md space-y-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <input
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className="w-full p-3 border border-gray-300 rounded-lg"
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Your Email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="w-full p-3 border border-gray-300 rounded-lg"
-            />
-            <textarea
-              name="message"
-              placeholder="Your Message"
-              value={formData.message}
-              onChange={handleChange}
-              required
-              rows={5}
-              className="w-full p-3 border border-gray-300 rounded-lg"
-            />
-            <button
-              type="submit"
-              className="w-full py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
+      {/* Top banner with animated lines */}
+      <div className="mt-16 bg-purple-600 text-black py-3 text-center text-lg font-semibold shadow-md relative overflow-hidden">
+        
+        {/* 🔹 Top animated line */}
+        <motion.div
+          initial={{ x: "-100%" }}
+          animate={{ x: "100%" }}
+          transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
+          className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-600"
+        />
+
+        <motion.span
+          initial={{ x: "-100%" }}
+          animate={{ x: "100%" }}
+          transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
+          className="inline-block whitespace-nowrap"
+        >
+          LET&apos;S CONNECT • FIND ME ON SOCIALS
+        </motion.span>
+
+        {/* 🔹 Bottom animated line */}
+        <motion.div
+          initial={{ x: "-100%" }}
+          animate={{ x: "100%" }}
+          transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
+          className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-600"
+        />
+      </div>
+
+      <section className="py-16 px-6 sm:px-12">
+        <div className="max-w-6xl mx-auto flex flex-wrap justify-center gap-10">
+          {socialLinks.map((social, idx) => (
+            <motion.a
+              key={idx}
+              href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.97 }}
+              {...floatingRotation}
+              className={`group relative overflow-hidden w-32 h-32 sm:w-36 sm:h-36 rounded-2xl text-white font-extrabold shadow-lg bg-gradient-to-r ${social.color}`}
             >
-              Send Message
-            </button>
-          </motion.form>
+              {/* Glow ring */}
+              <span className="pointer-events-none absolute -inset-1 rounded-3xl bg-gradient-to-r from-purple-500/40 to-pink-500/40 blur-2xl opacity-0 group-hover:opacity-100 transition"></span>
+
+              <div className="relative z-10 flex flex-col items-center justify-center h-full">
+                <div className="text-3xl sm:text-4xl mb-1 drop-shadow">{social.icon}</div>
+                <span className="text-xs sm:text-sm font-medium tracking-wide">{social.name}</span>
+              </div>
+            </motion.a>
+          ))}
         </div>
       </section>
     </main>
