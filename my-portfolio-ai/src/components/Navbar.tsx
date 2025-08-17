@@ -67,6 +67,14 @@ export default function Navbar() {
         </div>
       </div>
 
+      {/* 🔥 Animated Gradient Line at Bottom */}
+      <motion.div
+        initial={{ x: "-100%" }}
+        animate={{ x: "100%" }}
+        transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
+        className="w-full h-1 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-600"
+      />
+
       {/* Animated Mobile Menu */}
       <AnimatePresence>
         {menuOpen && (
@@ -75,7 +83,7 @@ export default function Navbar() {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed top-0 right-0 w-3/4 h-full  shadow-lg flex flex-col items-center pt-16 space-y-6 z-50"
+            className="fixed top-0 right-0 w-3/4 h-full shadow-lg flex flex-col items-center pt-16 space-y-6 z-50"
           >
             {/* Close Button */}
             <button
