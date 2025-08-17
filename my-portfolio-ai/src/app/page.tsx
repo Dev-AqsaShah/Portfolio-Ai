@@ -49,7 +49,7 @@ export default function Hero() {
       {/* Right side text + button */}
       <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left space-y-8">
         {/* Typing Text */}
-        <h1 className="text-2xl md:text-4xl font-extrabold bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 bg-clip-text text-transparent leading-snug">
+        <h1 className=" md:text-4xl font-extrabold bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 bg-clip-text text-transparent leading-snug">
           {displayedText}
           <span className="">
             {showCursor ? "|" : " "}
@@ -65,7 +65,7 @@ export default function Hero() {
             }}
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300 }}
-            className="px-10 py-4 bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600 text-white font-bold text-lg rounded-full shadow-lg"
+            className="text-black px-10 py-4 bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600  font-bold text-lg rounded-full shadow-lg"
           >
             Start Exploring
           </motion.button>
