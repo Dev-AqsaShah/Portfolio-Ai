@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 const aboutData = [
@@ -20,6 +20,13 @@ const aboutData = [
 ];
 
 export default function About() {
+  // State for mobile click toggle
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  const handleBoxClick = (index: number) => {
+    setActiveIndex((prev) => (prev === index ? null : index));
+  };
+
   return (
     <div className="md:p-12 min-h-screen text-black">
       {/* Top Purple Bar */}
@@ -52,27 +59,10 @@ export default function About() {
             marginTop: index % 2 === 1 ? "3rem" : "0", // shift odd boxes down
           };
 
-          if (isLast) {
-            style.marginTop = "1.5rem"; // thoda upar kiya last box ko
-          }
-
           return (
             <motion.div
               key={index}
               style={style}
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{
-                scale: 1,
-                opacity: 1,
-                y: [0, -8, 0], // floating animation
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                repeatType: "loop",
-                delay: index * 0.15, // stagger effect
-              }}
-              whileHover={{ scale: 1.1, rotate: 3 }}
               className={`relative w-36 sm:w-40 h-14 sm:h-16 flex items-center justify-center 
                 rounded-full cursor-pointer overflow-hidden group 
                 border-2 border-black shadow-[0_0_20px_5px_rgba(168,85,247,0.8)] 
@@ -80,13 +70,33 @@ export default function About() {
                 hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-500
                 transition-all duration-300 
                 ${isLast ? "col-start-3" : ""}`} // move last box to right column
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+              whileHover={{ scale: 1.1, rotate: 3 }}
+              onClick={() => handleBoxClick(index)}
             >
               {/* Key */}
-              <span className="font-semibold group-hover:opacity-0 transition-opacity duration-300 text-center px-2">
+              <span
+                className={`font-semibold transition-opacity duration-300 text-center px-2
+                  ${
+                    activeIndex === index
+                      ? "opacity-0"
+                      : "opacity-100 group-hover:opacity-0"
+                  }`}
+              >
                 {item.key}
               </span>
-              {/* Value on hover */}
-              <span className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-bold text-center px-2">
+
+              {/* Value on hover / click */}
+              <span
+                className={`absolute transition-opacity duration-300 font-bold text-center text-white px-2
+                  ${
+                    activeIndex === index
+                      ? "opacity-100"
+                      : "opacity-0 group-hover:opacity-100"
+                  }`}
+              >
                 {item.value}
               </span>
             </motion.div>

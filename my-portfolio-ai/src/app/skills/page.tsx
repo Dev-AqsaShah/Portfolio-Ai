@@ -1,6 +1,7 @@
 "use client";
 import Navbar from "@/components/Navbar";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import {
   FaReact,
   FaHtml5,
@@ -38,21 +39,25 @@ const skills = [
 ];
 
 export default function SkillsPage() {
+  // State for mobile click toggle
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  const handleSkillClick = (index: number) => {
+    setActiveIndex((prev) => (prev === index ? null : index));
+  };
+
   return (
     <main className="min-h-screen relative overflow-hidden">
       <Navbar />
 
       {/* Top Purple Banner with animated lines */}
       <div className="w-screen bg-purple-600 text-center py-3 overflow-hidden relative">
-        
-        {/* 🔹 Top animated line */}
         <motion.div
           initial={{ x: "-100%" }}
           animate={{ x: "100%" }}
           transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
           className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-600"
         />
-
         <motion.span
           initial={{ x: "-100%" }}
           animate={{ x: "100%" }}
@@ -65,8 +70,6 @@ export default function SkillsPage() {
         >
           YOU ARE IN MY SKILLS PAGE NOW
         </motion.span>
-
-        {/* 🔹 Bottom animated line */}
         <motion.div
           initial={{ x: "-100%" }}
           animate={{ x: "100%" }}
@@ -81,7 +84,7 @@ export default function SkillsPage() {
             <motion.div
               key={i}
               className="w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center rounded-full 
-                         bg-purple-800 text-white text-3xl shadow-lg relative group"
+                         bg-purple-800 text-white text-3xl shadow-lg relative"
               whileHover={{ scale: 1.1 }}
               animate={{ y: [8, -12, 15] }}
               transition={{
@@ -89,10 +92,19 @@ export default function SkillsPage() {
                 duration: 2.5 + i * 0.15,
                 ease: "easeInOut",
               }}
+              onClick={() => handleSkillClick(i)}
             >
               {skill.icon}
-              <span className="absolute bottom-[-28px] opacity-0 group-hover:opacity-100 
-                               text-sm font-medium text-white transition">
+
+              {/* Tooltip / Skill name */}
+              <span
+                className={`absolute bottom-[-28px] text-sm font-medium text-white transition-opacity 
+                  ${
+                    activeIndex === i
+                      ? "opacity-100"
+                      : "opacity-0 sm:group-hover:opacity-100"
+                  }`}
+              >
                 {skill.name}
               </span>
             </motion.div>
