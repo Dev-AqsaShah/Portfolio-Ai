@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import Link from "next/link";
@@ -21,7 +19,11 @@ export default function Navbar() {
 
   const menuVariants = {
     hidden: { opacity: 0, x: 100 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.4, staggerChildren: 0.15 } },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.4, staggerChildren: 0.15 },
+    },
     exit: { opacity: 0, x: 100, transition: { duration: 0.3 } },
   };
 
@@ -38,28 +40,33 @@ export default function Navbar() {
       className="fixed w-full z-50 bg-purple-700 shadow-md"
     >
       <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
-        
-        {/* LEFT: Theme Toggle + Resume Button */}
+        {/* LEFT: Theme Toggle + Resume Buttons */}
         <div className="flex items-center space-x-4">
           <ThemeToggle />
-          <div className="relative group">
+
+          {/* Resume Buttons */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4 }}
+            className="flex space-x-2"
+          >
             <a
-              href="/assets/AqsaShah_resume.pdf"
+              href="/assets/AqsaShah_Resume.pdf.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-purple-300 text-purple-900 font-semibold py-1 px-3 rounded-lg shadow-md hover:bg-purple-400 transition"
             >
-              Resume
+              View Resume
             </a>
-            {/* Download button inside the same link */}
             <a
-              href="/assets/AqsaShah_resume.pdf"
+              href="/assets/AqsaShah_Resume.pdf.pdf"
               download
-              className="absolute -right-20 left-20 bg-purple-500 text-white px-2 py-1 text-xs rounded opacity-0 group-hover:opacity-100 transition"
+              className="bg-purple-500 text-white font-semibold py-1 px-3 rounded-lg shadow-md hover:bg-purple-600 transition"
             >
               Download
             </a>
-          </div>
+          </motion.div>
         </div>
 
         {/* RIGHT: Navigation Links (Desktop) */}
@@ -77,10 +84,10 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Menu Trigger (3 dots) */}
-        <div className="sm:hidden  flex justify-start">
+        <div className="sm:hidden flex justify-end w-10">
           <button
             onClick={() => setMenuOpen(true)}
-            className="text-white text-3xl "
+            className="text-white text-3xl"
           >
             <HiOutlineDotsVertical />
           </button>
@@ -103,7 +110,7 @@ export default function Navbar() {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed top-0 right-0 w-3/4 h-full shadow-lg flex flex-col items-center pt-16 space-y-6 z-50 "
+            className="fixed top-0 right-0 w-3/4 h-full shadow-lg flex flex-col items-center pt-16 space-y-6 z-50 bg-purple-700"
           >
             {/* Close Button */}
             <button
@@ -115,11 +122,7 @@ export default function Navbar() {
 
             {/* Menu Links */}
             {navLinks.map((link) => (
-              <motion.div
-                key={link.name}
-                variants={itemVariants}
-                className="w-40"
-              >
+              <motion.div key={link.name} variants={itemVariants} className="w-40">
                 <Link
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
@@ -130,21 +133,18 @@ export default function Navbar() {
               </motion.div>
             ))}
 
-            {/* Resume Button Mobile */}
-            <motion.div
-              variants={itemVariants}
-              className="w-40 text-center"
-            >
+            {/* Resume Buttons Mobile */}
+            <motion.div variants={itemVariants} className="w-40 text-center space-y-2">
               <a
-                href="/assets/AqsaShah_resume.pdf"
+                href="/assets/AqsaShah_Resume.pdf.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full bg-purple-300 text-purple-900 font-semibold py-2 rounded-lg shadow-md hover:bg-purple-400 transition mb-2"
+                className="block w-full bg-purple-300 text-purple-900 font-semibold py-2 rounded-lg shadow-md hover:bg-purple-400 transition"
               >
                 View Resume
               </a>
               <a
-                href="/assets/AqsaShah_resume.pdf"
+                href="/assets/AqsaShah_Resume.pdf.pdf"
                 download
                 className="block w-full bg-purple-500 text-white font-semibold py-2 rounded-lg shadow-md hover:bg-purple-600 transition"
               >
@@ -157,6 +157,3 @@ export default function Navbar() {
     </motion.nav>
   );
 }
-
-
-
