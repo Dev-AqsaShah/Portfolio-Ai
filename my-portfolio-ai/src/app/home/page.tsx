@@ -31,7 +31,6 @@ export default function HomePage() {
         index++;
         if (index === fullText.length) {
           isDeleting = true;
-          setTimeout(() => {}, 1000);
         }
       } else {
         setDisplayText(fullText.slice(0, index - 1));
@@ -72,7 +71,10 @@ export default function HomePage() {
           <div className="mt-6 flex gap-4 justify-center md:justify-start">
             <button
               onClick={() =>
-                window.open("https://dev-aqsashah-portfolio-assistant-app-3jykbz.streamlit.app/", "_blank")
+                window.open(
+                  "https://dev-aqsashah-portfolio-assistant-app-3jykbz.streamlit.app/",
+                  "_blank"
+                )
               }
               className="px-6 py-3 bg-purple-700 text-purple-300 rounded-full shadow-lg hover:bg-purple-400 hover:text-purple-800 transition-transform hover:scale-105"
             >
@@ -81,19 +83,22 @@ export default function HomePage() {
           </div>
         </motion.div>
 
-        {/* RIGHT IMAGE */}
+        {/* RIGHT IMAGE with shadow */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4, delay: 0.1 }}
+          transition={{ duration: 0.8 }}
           className="flex justify-center mt-6 sm:mt-10 md:mt-0"
         >
           <Image
             src="/assets/profile.jpg"
             alt="Profile"
-            width={300}
-            height={300}
-            className="rounded-full border-4 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 shadow-[0_0_200px_20px_rgba(168,85,247,0.7)] object-cover"
+            width={400}
+            height={400}
+            className="rounded-full border-4 border-purple-400 
+                       shadow-[0_0_120px_40px_rgba(168,85,247,0.95)] object-cover
+                       w-[220px] sm:w-[280px] md:w-[340px] lg:w-[400px] xl:w-[460px] h-auto"
+            priority
           />
         </motion.div>
       </section>
