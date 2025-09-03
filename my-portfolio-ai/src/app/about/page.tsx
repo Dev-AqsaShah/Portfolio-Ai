@@ -1,3 +1,5 @@
+
+
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
@@ -17,10 +19,13 @@ const aboutData = [
   { key: "Currently Learning", value: "OpenAI Agents SDK" },
   { key: "Future Goal", value: "Full-stack AI Developer" },
   { key: "After SDK Goal", value: "MCP Server" },
+  { key: "working on", value: "n8n automation" },
 ];
 
+// random delay function for blink
+const getRandomDelay = () => Math.random() * 2;
+
 export default function About() {
-  // State for mobile click toggle
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const handleBoxClick = (index: number) => {
@@ -69,10 +74,17 @@ export default function About() {
                 bg-purple-800 text-black text-sm sm:text-base
                 hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-500
                 transition-all duration-300 
-                ${isLast ? "col-start-3" : ""}`} // move last box to right column
+                ${isLast ? "col-start-3" : ""}`}
               initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
+              animate={{ 
+                scale: 1, 
+                opacity: [1, 0.4, 1] // blink effect
+              }}
+              transition={{ 
+                duration: 1.5, 
+                repeat: Infinity, 
+                delay: getRandomDelay() 
+              }}
               whileHover={{ scale: 1.1, rotate: 3 }}
               onClick={() => handleBoxClick(index)}
             >
