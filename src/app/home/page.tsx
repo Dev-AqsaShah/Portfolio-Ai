@@ -82,13 +82,16 @@ export default function HomePage() {
             <span className="text-slate-500">BS CS • 3PL Dynamics Intern • Claude API dev.</span>
           </p>
 
-          <button
-            onClick={() => window.open("https://dev-aqsashah-portfolio-assistant-app-3jykbz.streamlit.app/", "_blank")}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-white transition hover:scale-105"
-            style={{ background: "linear-gradient(135deg, rgba(168,85,247,0.3), rgba(6,182,212,0.3))", border: "1px solid rgba(168,85,247,0.4)" }}
-          >
-            🤖 Ask My AI Assistant
-          </button>
+          <a href="/assistant">
+            <motion.button
+              whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(168,85,247,0.5)" }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-white transition"
+              style={{ background: "linear-gradient(135deg, rgba(168,85,247,0.3), rgba(6,182,212,0.3))", border: "1px solid rgba(168,85,247,0.4)" }}
+            >
+              🤖 Ask My AI Assistant
+            </motion.button>
+          </a>
         </motion.div>
 
         {/* Right: Profile */}
