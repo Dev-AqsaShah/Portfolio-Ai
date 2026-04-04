@@ -402,11 +402,11 @@ export default function About() {
             </div>
           </BentoCard>
 
-          {/* GOAL CARD — full width */}
+          {/* GOAL CARD — same row as hobbies */}
           <BentoCard
             index={10}
             glowColor="rgba(6,182,212,0.5)"
-            className="sm:col-span-2 lg:col-span-3"
+            className="sm:col-span-2"
           >
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div className="flex items-center gap-3">

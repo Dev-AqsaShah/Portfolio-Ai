@@ -45,7 +45,7 @@ const education = [
     institute: "Governor Sindh Initiative for GenAI, Web3 & Metaverse",
     duration: "3rd Year (Ongoing)",
     status: "Gov. Initiative",
-    detail: "GenAI, Web3, Cloud-Native Computing, Smart Contracts, DAOs & Blockchain. Free government-funded program.",
+    detail: "GenAI, Web3, Cloud-Native Computing, Smart Contracts, DAOs & Blockchain. Free government-funded program. Currently in 4th Quarter (Final).",
     color: "from-cyan-500 to-blue-500",
   },
   {
@@ -53,7 +53,7 @@ const education = [
     institute: "PIAIC — Presidential Initiative for AI & Computing",
     duration: "3rd Year (Ongoing)",
     status: "PIAIC",
-    detail: "Artificial Intelligence, Machine Learning, Cloud Computing, Blockchain, IoT & Data Science. 4-quarter annual program across 28 cities of Pakistan.",
+    detail: "Artificial Intelligence, Machine Learning, Cloud Computing, Blockchain, IoT & Data Science. 4-quarter annual program across 28 cities of Pakistan. Currently in 6th Quarter (2nd Last).",
     color: "from-purple-500 to-indigo-500",
   },
 ];

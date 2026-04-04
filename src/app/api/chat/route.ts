@@ -79,6 +79,24 @@ Other: GitHub, Playwright browser automation, n8n workflow automation
    - Built during internship at 3PL Dynamics
    - React Native + Expo + TypeScript
 
+7. Physical-AI-Humanoid-Robotics-Textbook
+   - Interactive textbook + web app on Physical AI & Humanoid Robotics
+   - Live: https://physical-ai-humanoid-robotics-textb-beryl-one.vercel.app
+   - Next.js frontend + Python backend + Anthropic API + OpenAI Agents SDK
+
+8. Hackathon 2 (Multi-Phase)
+   - Multi-phase hackathon project (Phase 1, 2, 3, 5)
+   - TypeScript + Python + Docker
+
+9. Hackathon Phase III
+   - Next.js web app built during Hackathon Phase III
+   - Live: https://hackathon-phase-iii-eight.vercel.app
+
+10. E-commerce Admin Dashboard
+    - Separate admin panel for e-commerce management
+    - Next.js + Sanity CMS + TypeScript
+    - Live: https://admin-dashboard-e-commerce-two.vercel.app
+
 == WHAT MAKES AQSA SPECIAL ==
 - Built enterprise-grade AI systems at age 22 as a 2nd-year CS student
 - Uses Claude (Anthropic) — has active subscription + API credits
