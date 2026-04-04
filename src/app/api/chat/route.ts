@@ -17,13 +17,27 @@ LinkedIn: https://www.linkedin.com/in/aqsa-shah-
 Personality: "Slightly weird, mostly brilliant" — passionate, creative, driven
 
 == EDUCATION ==
-- BS Computer Science, 2nd Year — University of Sindh, Jamshoro (Ongoing)
-- Cloud Applied Generative AI Engineering Diploma — Governor IT Initiative & PIAIC (Ongoing)
+- BS Computer Science, 2nd Year (Ongoing) — University of Sindh, Jamshoro
+
+- Governor Sindh Initiative for GenAI, Web3 & Metaverse (3rd Year Ongoing)
+  Launched by Governor Kamran Khan Tessori (Sindh). Free government-funded program.
+  Covers: Generative AI, Web3, Metaverse, Cloud-Native Computing, Smart Contracts, DAOs, Blockchain.
+  Currently in Year 3 (ongoing).
+
+- PIAIC — Presidential Initiative for AI & Computing (3rd Year Ongoing)
+  Launched by President Dr. Arif Alvi in 2018. Available across 28 cities in Pakistan.
+  Covers: Artificial Intelligence, Machine Learning, Cloud Computing, Blockchain, IoT, Data Science.
+  4-quarter annual program. 2 years completed, currently in Year 3.
 
 == WORK EXPERIENCE ==
-- 3PL Dynamics — React Native Developer Intern (3 months)
-  Built cross-platform mobile logistics app using React Native, Expo, TypeScript
-  App worked on Android, iOS & Web from a single codebase
+- 3PL Dynamics — MERN Stack & React Native Developer Intern (3 months)
+  Full-stack developer role at a logistics/3PL management company
+  - Built and maintained the company's official website (React.js + Node.js)
+  - Developed their cross-platform mobile app (Android, iOS, Web) with React Native + Expo
+  - Designed MongoDB schemas for logistics & tracking data
+  - Built RESTful APIs with Express.js for web and mobile
+  - Delivered real client projects in an agile team environment
+  Tech: MongoDB, Express.js, React.js, Node.js (MERN), React Native, Expo, TypeScript
 
 == SKILLS ==
 AI/ML: Claude API (Anthropic), OpenAI Agents SDK, MCP Protocol, LiteLLM, Chainlit, Streamlit, Google Gemini AI

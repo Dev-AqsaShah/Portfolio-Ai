@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import ChatWidget from "@/components/ChatWidget";
-import { RiRobot2Line } from "react-icons/ri";
+import { Sparkles } from "lucide-react";
 
 const features = [
   { icon: "🧠", text: "Knows all of Aqsa's projects & skills" },
@@ -31,7 +31,7 @@ export default function AssistantPage() {
         >
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4"
             style={{ background: "linear-gradient(135deg, #a855f7, #06b6d4)" }}>
-            <RiRobot2Line className="text-white text-3xl" />
+            <Sparkles className="text-white w-7 h-7" />
           </div>
           <h1 className="text-4xl md:text-5xl font-black grad-text mb-3">
             Aqsa&apos;s AI Assistant

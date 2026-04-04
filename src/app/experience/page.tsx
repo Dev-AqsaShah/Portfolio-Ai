@@ -4,24 +4,26 @@ import { motion } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
 import { MdWork, MdSchool } from "react-icons/md";
 import { TbBrandReactNative } from "react-icons/tb";
-import { SiExpo } from "react-icons/si";
+import { SiMongodb, SiExpress, SiNodedotjs } from "react-icons/si";
+import { FaReact } from "react-icons/fa";
 
 const experiences = [
   {
     type: "work",
     company: "3PL Dynamics",
-    role: "React Native Developer Intern",
+    role: "MERN Stack & React Native Developer Intern",
     duration: "3 Months",
     location: "Pakistan",
     description:
-      "Built cross-platform mobile applications for a logistics & 3PL management company. Developed mobile apps used for tracking, order management & field operations — shipped for Android, iOS & Web using a single codebase.",
+      "Worked as a full-stack developer at a logistics & 3PL management company. Contributed to their company website, built their mobile application, and delivered client-facing projects end-to-end — from database design to production deployment.",
     achievements: [
-      "Built the 3PL Dynamics mobile app from scratch using React Native & Expo",
-      "Implemented cross-platform compatibility (Android, iOS, Web)",
-      "Used TypeScript throughout for type-safe code",
-      "Collaborated with a team in an agile environment",
+      "Developed and maintained the company's official website using React.js & Node.js",
+      "Built the 3PL Dynamics mobile app (Android + iOS + Web) with React Native & Expo",
+      "Designed and implemented MongoDB schemas for logistics & tracking data",
+      "Built RESTful APIs with Express.js for mobile and web integration",
+      "Worked on real client projects delivered in a professional agile environment",
     ],
-    tech: ["React Native", "Expo", "TypeScript", "JavaScript"],
+    tech: ["MongoDB", "Express.js", "React.js", "Node.js", "React Native", "Expo", "TypeScript"],
     github: "https://github.com/Dev-AqsaShah/React-Native-Expo",
     color: "from-purple-500 to-cyan-500",
     iconColor: "rgba(168,85,247,0.5)",
@@ -35,14 +37,24 @@ const education = [
     institute: "University of Sindh, Jamshoro",
     duration: "2nd Year (In Progress)",
     status: "Ongoing",
+    detail: "Core focus: Data Structures, Algorithms, Software Engineering, AI & Systems",
     color: "from-pink-500 to-purple-500",
   },
   {
-    degree: "Cloud Applied Generative AI Engineering",
-    institute: "Governor IT Initiative & PIAIC",
-    duration: "Ongoing",
-    status: "Diploma",
+    degree: "Generative AI, Web3 & Metaverse",
+    institute: "Governor Sindh Initiative for GenAI, Web3 & Metaverse",
+    duration: "3rd Year (Ongoing)",
+    status: "Gov. Initiative",
+    detail: "GenAI, Web3, Cloud-Native Computing, Smart Contracts, DAOs & Blockchain. Free government-funded program.",
     color: "from-cyan-500 to-blue-500",
+  },
+  {
+    degree: "AI, Cloud Computing & Blockchain",
+    institute: "PIAIC — Presidential Initiative for AI & Computing",
+    duration: "3rd Year (Ongoing)",
+    status: "PIAIC",
+    detail: "Artificial Intelligence, Machine Learning, Cloud Computing, Blockchain, IoT & Data Science. 4-quarter annual program across 28 cities of Pakistan.",
+    color: "from-purple-500 to-indigo-500",
   },
 ];
 
@@ -143,7 +155,10 @@ export default function ExperiencePage() {
                 {exp.tech.map((t) => (
                   <span key={t} className="flex items-center gap-1 text-xs px-2 py-1 rounded-full border border-purple-500/30 text-purple-300 bg-purple-500/10">
                     {t === "React Native" && <TbBrandReactNative />}
-                    {t === "Expo" && <SiExpo />}
+                    {t === "MongoDB" && <SiMongodb />}
+                    {t === "Express.js" && <SiExpress />}
+                    {t === "React.js" && <FaReact />}
+                    {t === "Node.js" && <SiNodedotjs />}
                     {t}
                   </span>
                 ))}
@@ -231,8 +246,11 @@ export default function ExperiencePage() {
                       {edu.status}
                     </span>
                   </div>
-                  <p className="text-slate-400 text-sm mt-0.5">{edu.institute}</p>
-                  <p className="text-slate-600 text-xs mt-1">{edu.duration}</p>
+                  <p className="text-purple-300 text-sm font-medium mt-0.5">{edu.institute}</p>
+                  <p className="text-cyan-500 text-xs mt-1 font-semibold">{edu.duration}</p>
+                  {"detail" in edu && (
+                    <p className="text-slate-500 text-xs mt-2 leading-relaxed">{(edu as typeof edu & { detail: string }).detail}</p>
+                  )}
                 </div>
               </motion.div>
             ))}

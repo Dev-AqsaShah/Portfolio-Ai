@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { RiRobot2Line } from "react-icons/ri";
-import { HiX } from "react-icons/hi";
+import { Sparkles, X } from "lucide-react";
 import ChatWidget from "./ChatWidget";
 
 export default function ChatBubble() {
@@ -48,7 +47,7 @@ export default function ChatBubble() {
               exit={{ rotate: 90, opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <HiX className="text-xl" />
+              <X className="w-5 h-5" />
             </motion.span>
           ) : (
             <motion.span
@@ -58,7 +57,7 @@ export default function ChatBubble() {
               exit={{ rotate: -90, opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <RiRobot2Line className="text-2xl" />
+              <Sparkles className="w-6 h-6" />
             </motion.span>
           )}
         </AnimatePresence>
@@ -82,7 +81,7 @@ export default function ChatBubble() {
           transition={{ delay: 1.5 }}
           className="absolute bottom-16 right-0 whitespace-nowrap text-xs text-slate-400 bg-[#0a0a1f] border border-purple-500/20 px-3 py-1.5 rounded-xl pointer-events-none"
         >
-          Ask about Aqsa ✨
+          Ask about Aqsa
         </motion.div>
       )}
     </div>

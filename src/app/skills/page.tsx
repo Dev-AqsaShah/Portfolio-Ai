@@ -8,7 +8,7 @@ import {
 import {
   SiNextdotjs, SiTailwindcss, SiTypescript, SiOpenai, SiVercel,
   SiFramer, SiFastapi, SiStreamlit, SiMongodb, SiPostgresql,
-  SiKubernetes, SiExpo,
+  SiKubernetes, SiExpo, SiExpress, SiNodedotjs,
 } from "react-icons/si";
 import { MdOutlineSmartToy, MdOutlineMemory } from "react-icons/md";
 import { TbBrandReactNative } from "react-icons/tb";
@@ -50,6 +50,8 @@ const skillCategories = [
     border: "border-cyan-500/30",
     glow: "rgba(6,182,212,0.4)",
     skills: [
+      { name: "Node.js", icon: <SiNodedotjs /> },
+      { name: "Express.js", icon: <SiExpress /> },
       { name: "FastAPI", icon: <SiFastapi /> },
       { name: "Python", icon: <FaPython /> },
       { name: "MongoDB", icon: <SiMongodb /> },

@@ -3,8 +3,8 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaPaperPlane, FaTrash } from "react-icons/fa";
-import { RiRobot2Line } from "react-icons/ri";
 import { FiUser } from "react-icons/fi";
+import { Sparkles } from "lucide-react";
 
 interface Message {
   role: "user" | "assistant";
@@ -103,7 +103,7 @@ export default function ChatWidget({ compact = false }: { compact?: boolean }) {
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
             style={{ background: "linear-gradient(135deg, #a855f7, #06b6d4)" }}>
-            <RiRobot2Line className="text-white text-lg" />
+            <Sparkles className="text-white w-4 h-4" />
           </div>
           <div>
             <div className="font-bold text-slate-200 text-sm">Aqsa&apos;s AI Assistant</div>
@@ -135,7 +135,7 @@ export default function ChatWidget({ compact = false }: { compact?: boolean }) {
               className="w-16 h-16 rounded-2xl flex items-center justify-center"
               style={{ background: "linear-gradient(135deg, rgba(168,85,247,0.3), rgba(6,182,212,0.3))", border: "1px solid rgba(168,85,247,0.3)" }}
             >
-              <RiRobot2Line className="text-purple-400 text-3xl" />
+              <Sparkles className="text-purple-400 w-8 h-8" />
             </motion.div>
             <div>
               <p className="text-slate-300 font-semibold text-sm">Hi! I know everything about Aqsa 👋</p>
@@ -171,7 +171,7 @@ export default function ChatWidget({ compact = false }: { compact?: boolean }) {
                   {msg.role === "assistant" && (
                     <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
                       style={{ background: "linear-gradient(135deg, #a855f7, #06b6d4)" }}>
-                      <RiRobot2Line className="text-white text-xs" />
+                      <Sparkles className="text-white w-3.5 h-3.5" />
                     </div>
                   )}
                   <div

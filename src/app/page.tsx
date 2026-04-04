@@ -1,20 +1,24 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import Image from "next/image";
+import { useState, useEffect } from "react";
+import { Sparkles } from "lucide-react";
+import Link from "next/link";
+import AboutPage from "@/app/about/page";
+import SkillsPage from "@/app/skills/page";
+import ProjectsPage from "@/app/projects/page";
+import ExperiencePage from "@/app/experience/page";
+import ContactPage from "@/app/contact/page";
 
-const roles = [
-  "AI Engineer",
-  "Agentic AI Builder",
-  "Full Stack Developer",
-  "Claude API Expert",
-  "Hackathon Finalist",
-];
+const roles = ["AI Engineer", "Full Stack Developer", "MERN Stack Dev", "Agentic AI Builder"];
 
-export default function Hero() {
+const fadeIn = {
+  hidden: { opacity: 0, y: 50 },
+  visible: (delay = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.8, delay } }),
+};
+
+export default function HomePage() {
   const [roleIdx, setRoleIdx] = useState(0);
   const [displayed, setDisplayed] = useState("");
   const [deleting, setDeleting] = useState(false);
@@ -24,13 +28,13 @@ export default function Hero() {
     let t: NodeJS.Timeout;
     if (!deleting) {
       if (displayed.length < role.length) {
-        t = setTimeout(() => setDisplayed(role.slice(0, displayed.length + 1)), 75);
+        t = setTimeout(() => setDisplayed(role.slice(0, displayed.length + 1)), 80);
       } else {
-        t = setTimeout(() => setDeleting(true), 2200);
+        t = setTimeout(() => setDeleting(true), 2000);
       }
     } else {
       if (displayed.length > 0) {
-        t = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 40);
+        t = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 45);
       } else {
         setDeleting(false);
         setRoleIdx((p) => (p + 1) % roles.length);
@@ -40,145 +44,102 @@ export default function Hero() {
   }, [displayed, deleting, roleIdx]);
 
   return (
-    <section className="relative min-h-screen flex flex-col md:flex-row items-center justify-center md:justify-between px-6 md:px-20 gap-12 overflow-hidden pt-20">
+    <main className="min-h-screen bg-[#050510]">
 
-      {/* Ambient glows */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-700/20 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-cyan-600/15 rounded-full blur-[100px]" />
-      </div>
+      {/* HERO */}
+      <section className="min-h-screen flex flex-col-reverse md:flex-row items-center justify-center md:justify-between px-6 md:px-20 gap-12 pt-20 relative overflow-hidden">
+        {/* Ambient */}
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute top-1/4 left-0 w-80 h-80 bg-purple-700/15 rounded-full blur-[120px]" />
+          <div className="absolute bottom-1/4 right-0 w-72 h-72 bg-cyan-600/10 rounded-full blur-[100px]" />
+        </div>
 
-      {/* LEFT: Text */}
-      <motion.div
-        initial={{ opacity: 0, x: -60 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
-        className="flex-1 flex flex-col items-center md:items-start text-center md:text-left space-y-6 z-10"
-      >
-        {/* Status badge */}
+        {/* Left: Text */}
         <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 text-sm font-medium"
+          initial="hidden" animate="visible" variants={fadeIn}
+          className="max-w-xl text-center md:text-left flex flex-col items-center md:items-start justify-center z-10 space-y-5"
         >
-          <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-          Open to Opportunities
-        </motion.div>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 text-sm">
+            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+            Open to Opportunities
+          </div>
 
-        {/* Name */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="text-5xl md:text-7xl font-black leading-tight"
-        >
-          <span className="text-slate-100">Hi, I&apos;m </span>
-          <span className="grad-text">Aqsa Shah</span>
-        </motion.h1>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black leading-tight">
+            <span className="text-slate-100">I&apos;m </span>
+            <span className="grad-text">Aqsa Shah</span>
+          </h1>
 
-        {/* Typing role */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-          className="text-2xl md:text-3xl font-bold text-slate-300 h-10 flex items-center"
-        >
-          <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-            {displayed}
-          </span>
-          <span className="ml-1 text-purple-400 animate-pulse">|</span>
-        </motion.div>
+          <div className="text-xl md:text-2xl font-bold text-slate-300 h-8 flex items-center">
+            <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+              {displayed}
+            </span>
+            <span className="ml-1 text-purple-400 animate-pulse">|</span>
+          </div>
 
-        {/* Description */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.7 }}
-          className="text-slate-400 text-base md:text-lg max-w-lg leading-relaxed"
-        >
-          Building autonomous AI systems with{" "}
-          <span className="text-purple-400 font-semibold">Claude &amp; Anthropic API</span>.
-          BS Computer Science (2nd Year) • 3PL Dynamics Intern • Hackathon Finalist.
-        </motion.p>
+          <p className="text-slate-400 text-base leading-relaxed">
+            I&apos;m a{" "}
+            <span className="text-purple-400 font-semibold">slightly weird</span>,{" "}
+            <span className="text-cyan-400 font-semibold">mostly brilliant</span> AI Engineer
+            who builds autonomous systems that actually work.{" "}
+            <span className="text-slate-500">BS CS • 3PL Dynamics Intern • Claude API dev.</span>
+          </p>
 
-        {/* CTAs */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-          className="flex flex-wrap gap-4 justify-center md:justify-start"
-        >
-          <Link href="/home">
+          <Link href="/assistant">
             <motion.button
               whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(168,85,247,0.6)" }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-full font-bold text-white shadow-lg"
+              className="inline-flex items-center gap-2.5 px-7 py-3 rounded-full font-bold text-white"
+              style={{ background: "linear-gradient(135deg, #a855f7, #06b6d4)" }}
             >
-              Explore Portfolio
+              <Sparkles className="w-4 h-4" />
+              Ask My AI Assistant
             </motion.button>
           </Link>
-          <a href="/assets/AqsaShah_Resume.pdf.pdf" target="_blank" rel="noopener noreferrer">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 rounded-full font-bold border border-purple-500/50 text-purple-300 hover:bg-purple-500/10 transition"
-            >
-              View Resume
-            </motion.button>
-          </a>
         </motion.div>
 
-        {/* Social links + Stats */}
+        {/* Right: Profile */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.9 }}
-          className="flex items-center gap-6 pt-2"
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.9 }}
+          className="flex justify-center z-10"
         >
-          <a href="https://github.com/Dev-AqsaShah" target="_blank" rel="noopener noreferrer"
-            className="text-slate-400 hover:text-purple-400 transition text-2xl">
-            <FaGithub />
-          </a>
-          <a href="https://www.linkedin.com/in/aqsa-shah-" target="_blank" rel="noopener noreferrer"
-            className="text-slate-400 hover:text-cyan-400 transition text-2xl">
-            <FaLinkedin />
-          </a>
-          <div className="w-px h-6 bg-slate-700" />
-          {[
-            { label: "Projects", value: "15+" },
-            { label: "Repos", value: "55+" },
-            { label: "Hackathons", value: "5+" },
-          ].map((s) => (
-            <div key={s.label} className="text-center">
-              <div className="text-xl font-black text-purple-400">{s.value}</div>
-              <div className="text-xs text-slate-500 uppercase tracking-widest">{s.label}</div>
-            </div>
-          ))}
+          <div className="relative">
+            <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 blur-2xl opacity-25 animate-pulse" />
+            <div className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 opacity-50" />
+            <Image
+              src="/assets/profile.jpg"
+              alt="Aqsa Shah"
+              width={400}
+              height={400}
+              className="relative rounded-full object-cover w-[220px] sm:w-[280px] md:w-[340px] lg:w-[380px] h-auto"
+              style={{ boxShadow: "0 0 80px rgba(168,85,247,0.5)" }}
+              priority
+            />
+          </div>
         </motion.div>
-      </motion.div>
+      </section>
 
-      {/* RIGHT: Profile Image */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.9, delay: 0.3 }}
-        className="flex-1 flex justify-center z-10"
-      >
-        <div className="relative">
-          <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 blur-2xl opacity-30 animate-pulse" />
-          <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 opacity-60" />
-          <Image
-            src="/assets/profile.jpg"
-            alt="Aqsa Shah - AI Engineer"
-            width={420}
-            height={420}
-            className="relative rounded-full object-cover w-[240px] sm:w-[300px] md:w-[360px] lg:w-[420px] h-auto"
-            style={{ boxShadow: "0 0 80px rgba(168,85,247,0.5), 0 0 160px rgba(6,182,212,0.2)" }}
-            priority
-          />
-        </div>
-      </motion.div>
-    </section>
+      {/* ALL SECTIONS */}
+      {[
+        { id: "about",      Component: AboutPage },
+        { id: "skills",     Component: SkillsPage },
+        { id: "experience", Component: ExperiencePage },
+        { id: "projects",   Component: ProjectsPage },
+        { id: "contact",    Component: ContactPage },
+      ].map(({ id, Component }, i) => (
+        <motion.section
+          key={id}
+          id={id}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeIn}
+          custom={0.1 * (i + 1)}
+        >
+          <Component />
+        </motion.section>
+      ))}
+    </main>
   );
 }

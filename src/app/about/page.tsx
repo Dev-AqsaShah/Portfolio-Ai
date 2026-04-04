@@ -200,7 +200,7 @@ export default function About() {
               <div>
                 <div className="text-xs text-slate-500 uppercase tracking-widest mb-1">Education</div>
                 <div className="font-bold text-slate-200 text-sm">BS Computer Science</div>
-                <div className="text-xs text-purple-400 font-semibold">2nd Year</div>
+                <div className="text-xs text-purple-400 font-semibold">2nd Year (Ongoing)</div>
                 <div className="text-xs text-slate-500 mt-0.5">Uni of Sindh, Jamshoro</div>
               </div>
             </div>
@@ -224,7 +224,7 @@ export default function About() {
                   <div>
                     <div className="text-xs text-slate-500 uppercase tracking-widest mb-1">Experience</div>
                     <div className="font-bold text-slate-200 text-sm">3PL Dynamics</div>
-                    <div className="text-xs text-cyan-400 font-semibold">React Native Dev Intern</div>
+                    <div className="text-xs text-cyan-400 font-semibold">MERN Stack & React Native Intern</div>
                     <div className="text-xs text-slate-500">3 Months • Tap for more</div>
                   </div>
                 </div>
@@ -234,9 +234,9 @@ export default function About() {
                   style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
                 >
                   <div className="text-xs font-bold text-cyan-400 uppercase tracking-wide mb-1">What I built</div>
-                  <div className="text-xs text-slate-300">📱 3PL Dynamics mobile app</div>
-                  <div className="text-xs text-slate-300">⚡ React Native + Expo + TypeScript</div>
-                  <div className="text-xs text-slate-300">🌐 Android • iOS • Web — one codebase</div>
+                  <div className="text-xs text-slate-300">🌐 Company website (MERN Stack)</div>
+                  <div className="text-xs text-slate-300">📱 Mobile app (React Native + Expo)</div>
+                  <div className="text-xs text-slate-300">📦 Client projects + REST APIs</div>
                 </div>
               </motion.div>
             </div>
@@ -323,18 +323,26 @@ export default function About() {
             </div>
           </BentoCard>
 
-          {/* DIPLOMA */}
-          <BentoCard index={7} glowColor="rgba(34,197,94,0.4)">
-            <div className="flex items-start gap-3">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                style={{ background: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.3)" }}>
-                <FaGraduationCap className="text-green-400" />
+          {/* DIPLOMAS — spans 2 cols */}
+          <BentoCard index={7} glowColor="rgba(34,197,94,0.4)" className="sm:col-span-2">
+            <div className="flex items-center gap-2 mb-3">
+              <FaGraduationCap className="text-green-400" />
+              <div className="text-xs text-slate-500 uppercase tracking-widest">Certifications — Year 3 (Both Ongoing)</div>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {/* Governor IT */}
+              <div className="p-3 rounded-xl" style={{ background: "rgba(6,182,212,0.06)", border: "1px solid rgba(6,182,212,0.2)" }}>
+                <div className="text-xs font-bold text-cyan-400 mb-1">Governor Sindh Initiative</div>
+                <div className="text-xs text-slate-300 font-semibold">GenAI, Web3 & Metaverse</div>
+                <div className="text-xs text-slate-500 mt-1">Sindh • Year 3 Ongoing</div>
+                <div className="text-xs text-slate-600 mt-1">AI · Blockchain · Cloud · Web3 · Smart Contracts</div>
               </div>
-              <div>
-                <div className="text-xs text-slate-500 uppercase tracking-widest mb-1">Diploma</div>
-                <div className="font-bold text-slate-200 text-sm">Gen AI Engineering</div>
-                <div className="text-xs text-green-400 font-semibold">Governor IT Initiative</div>
-                <div className="text-xs text-slate-500 mt-0.5">PIAIC — Ongoing</div>
+              {/* PIAIC */}
+              <div className="p-3 rounded-xl" style={{ background: "rgba(168,85,247,0.06)", border: "1px solid rgba(168,85,247,0.2)" }}>
+                <div className="text-xs font-bold text-purple-400 mb-1">PIAIC — Presidential Initiative</div>
+                <div className="text-xs text-slate-300 font-semibold">AI, Cloud & Blockchain</div>
+                <div className="text-xs text-slate-500 mt-1">Pakistan • Year 3 Ongoing</div>
+                <div className="text-xs text-slate-600 mt-1">AI · ML · Cloud Computing · IoT · Data Science</div>
               </div>
             </div>
           </BentoCard>
@@ -384,12 +392,12 @@ export default function About() {
                 <span className="text-xs text-slate-400">Walking</span>
               </div>
               <div className="flex flex-col items-center gap-1">
-                <span className="text-2xl">🎥</span>
-                <span className="text-xs text-slate-400">Vlogging</span>
+                <span className="text-2xl">📚</span>
+                <span className="text-xs text-slate-400">Reading</span>
               </div>
               <div className="flex flex-col items-center gap-1">
-                <span className="text-2xl">🤖</span>
-                <span className="text-xs text-slate-400">Building AI</span>
+                <span className="text-2xl">🎵</span>
+                <span className="text-xs text-slate-400">Music</span>
               </div>
             </div>
           </BentoCard>

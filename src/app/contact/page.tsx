@@ -3,23 +3,47 @@
 import { motion } from "framer-motion";
 import {
   FaInstagram, FaSnapchatGhost, FaTiktok, FaYoutube, FaDiscord,
-  FaLinkedin, FaEnvelope, FaWhatsapp, FaGithub, FaTelegramPlane, FaFacebook,
+  FaLinkedin, FaEnvelope, FaWhatsapp, FaGithub, FaTelegramPlane,
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { HiArrowRight } from "react-icons/hi";
 
-const socialLinks = [
-  { name: "GitHub",    icon: <FaGithub />,        url: "https://github.com/Dev-AqsaShah",                                                             gradient: "135deg, #1a1a2e, #16213e",  border: "rgba(139,92,246,0.4)" },
-  { name: "LinkedIn",  icon: <FaLinkedin />,       url: "https://www.linkedin.com/in/aqsa-shah-",                                                      gradient: "135deg, #0077b5, #005885",  border: "rgba(0,119,181,0.4)" },
-  { name: "Gmail",     icon: <FaEnvelope />,       url: "mailto:aqsashah000000@gmail.com",                                                             gradient: "135deg, #ea4335, #c5221f",  border: "rgba(234,67,53,0.4)" },
-  { name: "Instagram", icon: <FaInstagram />,      url: "https://www.instagram.com/developer_aqsashah?igsh=MTJ4dW9vZ211Zm5sMA==",                      gradient: "135deg, #833ab4, #fd1d1d, #fcb045", border: "rgba(253,29,29,0.4)" },
-  { name: "WhatsApp",  icon: <FaWhatsapp />,       url: "https://wa.me/923000000000",                                                                  gradient: "135deg, #128c7e, #25d366",  border: "rgba(37,211,102,0.4)" },
-  { name: "Twitter X", icon: <FaXTwitter />,       url: "https://x.com/aqsa_shah111?t=T1skjfe5yl632BItutSK6w&s=09",                                   gradient: "135deg, #000000, #1a1a1a",  border: "rgba(255,255,255,0.2)" },
-  { name: "YouTube",   icon: <FaYoutube />,        url: "https://youtube.com/@whispers_of_life_1?feature=shared",                                      gradient: "135deg, #ff0000, #cc0000",  border: "rgba(255,0,0,0.4)" },
-  { name: "TikTok",    icon: <FaTiktok />,         url: "https://www.tiktok.com/@sindhi_girll2?_t=ZS-8ywvWrpSagb&_r=1",                                gradient: "135deg, #010101, #69c9d0",  border: "rgba(105,201,208,0.4)" },
-  { name: "Discord",   icon: <FaDiscord />,        url: "https://discord.gg/aqsashah",                                                                 gradient: "135deg, #5865f2, #4752c4",  border: "rgba(88,101,242,0.4)" },
-  { name: "Snapchat",  icon: <FaSnapchatGhost />,  url: "https://www.snapchat.com/add/chokri_sindhi?share_id=Q6DIr10ysmk&locale=en-GB",                gradient: "135deg, #fffc00, #f5e800",  border: "rgba(255,252,0,0.4)" },
-  { name: "Telegram",  icon: <FaTelegramPlane />,  url: "https://t.me/yourusername",                                                                   gradient: "135deg, #0088cc, #006699",  border: "rgba(0,136,204,0.4)" },
-  { name: "Facebook",  icon: <FaFacebook />,       url: "https://facebook.com/yourprofile",                                                            gradient: "135deg, #1877f2, #0d5ab8",  border: "rgba(24,119,242,0.4)" },
+const categories = [
+  {
+    label: "💼 Professional",
+    color: "rgba(168,85,247",
+    links: [
+      { name: "GitHub",   handle: "Dev-AqsaShah",              icon: <FaGithub />,   url: "https://github.com/Dev-AqsaShah",                                 bg: "#1a1a2e", accent: "#a855f7" },
+      { name: "LinkedIn", handle: "aqsa-shah-",                 icon: <FaLinkedin />, url: "https://www.linkedin.com/in/aqsa-shah-",                          bg: "#0a1628", accent: "#0077b5" },
+      { name: "Gmail",    handle: "aqsashah000000@gmail.com",   icon: <FaEnvelope />, url: "mailto:aqsashah000000@gmail.com",                                 bg: "#1a0a0a", accent: "#ea4335" },
+    ],
+  },
+  {
+    label: "📱 Social Media",
+    color: "rgba(236,72,153",
+    links: [
+      { name: "Instagram", handle: "@developer_aqsashah", icon: <FaInstagram />,     url: "https://www.instagram.com/developer_aqsashah?igsh=MTJ4dW9vZ211Zm5sMA==", bg: "#1a0a1a", accent: "#e1306c" },
+      { name: "TikTok",    handle: "@sindhi_girll2",      icon: <FaTiktok />,        url: "https://www.tiktok.com/@sindhi_girll2?_t=ZS-8ywvWrpSagb&_r=1",         bg: "#0a0a12", accent: "#69c9d0" },
+      { name: "Twitter X", handle: "@aqsa_shah111",       icon: <FaXTwitter />,      url: "https://x.com/aqsa_shah111?t=T1skjfe5yl632BItutSK6w&s=09",             bg: "#0a0a0a", accent: "#ffffff" },
+      { name: "Snapchat",  handle: "@chokri_sindhi",      icon: <FaSnapchatGhost />, url: "https://www.snapchat.com/add/chokri_sindhi",                            bg: "#1a1a00", accent: "#fffc00" },
+    ],
+  },
+  {
+    label: "💬 Messaging",
+    color: "rgba(6,182,212",
+    links: [
+      { name: "WhatsApp", handle: "Send a message",   icon: <FaWhatsapp />,       url: "https://wa.me/923000000000",   bg: "#0a1a0f", accent: "#25d366" },
+      { name: "Telegram", handle: "@yourusername",    icon: <FaTelegramPlane />,  url: "https://t.me/yourusername",    bg: "#0a1220", accent: "#0088cc" },
+      { name: "Discord",  handle: "aqsashah",         icon: <FaDiscord />,        url: "https://discord.gg/aqsashah", bg: "#0a0a1e", accent: "#5865f2" },
+    ],
+  },
+  {
+    label: "🎬 Content",
+    color: "rgba(239,68,68",
+    links: [
+      { name: "YouTube", handle: "@whispers_of_life_1", icon: <FaYoutube />, url: "https://youtube.com/@whispers_of_life_1?feature=shared", bg: "#1a0808", accent: "#ff0000" },
+    ],
+  },
 ];
 
 export default function ContactPage() {
@@ -40,7 +64,7 @@ export default function ContactPage() {
       </div>
 
       {/* Title */}
-      <div className="text-center pt-12 pb-8 px-4">
+      <div className="text-center pt-12 pb-10 px-4">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -50,47 +74,96 @@ export default function ContactPage() {
           Let&apos;s Connect
         </motion.h2>
         <p className="text-slate-500 text-sm md:text-base">
-          Find me across the internet — always open to talk AI, collab & opportunities
+          Find me everywhere — always open to talk AI, collab &amp; new opportunities
         </p>
       </div>
 
-      <section className="py-8 px-6 sm:px-12 pb-20">
-        <div className="max-w-4xl mx-auto flex flex-wrap justify-center gap-6">
-          {socialLinks.map((s, idx) => (
-            <motion.a
-              key={idx}
-              href={s.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.05 }}
-              whileHover={{
-                scale: 1.1,
-                boxShadow: `0 0 30px ${s.border}`,
-              }}
-              whileTap={{ scale: 0.95 }}
-              animate={{ rotate: [-3, 3, -3] }}
-              style={{
-                animationDuration: `${4 + idx * 0.3}s`,
-                background: `linear-gradient(${s.gradient})`,
-                border: `1px solid ${s.border}`,
-              }}
-              className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-2xl text-white font-bold overflow-hidden flex flex-col items-center justify-center gap-2 transition-all duration-300"
-            >
-              {/* Glow overlay */}
-              <div
-                className="absolute inset-0 rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-300"
-                style={{ background: `radial-gradient(circle, ${s.border} 0%, transparent 70%)` }}
-              />
-              <div className="relative z-10 text-3xl sm:text-4xl drop-shadow">{s.icon}</div>
-              <span className="relative z-10 text-xs font-semibold tracking-wide text-center px-2">
-                {s.name}
+      {/* Link categories */}
+      <section className="max-w-2xl mx-auto px-4 pb-20 space-y-8">
+        {categories.map((cat, ci) => (
+          <motion.div
+            key={cat.label}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: ci * 0.1 }}
+          >
+            {/* Category label */}
+            <div className="flex items-center gap-3 mb-3">
+              <span className="text-sm font-bold text-slate-500 uppercase tracking-widest">
+                {cat.label}
               </span>
-            </motion.a>
-          ))}
-        </div>
+              <div className="flex-1 h-px" style={{ background: `linear-gradient(to right, ${cat.color},0.3), transparent)` }} />
+            </div>
+
+            {/* Links */}
+            <div className="space-y-2">
+              {cat.links.map((link, li) => (
+                <motion.a
+                  key={link.name}
+                  href={link.url}
+                  target={link.url.startsWith("mailto") ? "_self" : "_blank"}
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: ci * 0.1 + li * 0.07 }}
+                  whileHover={{
+                    scale: 1.02,
+                    boxShadow: `0 0 25px ${link.accent}40`,
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                  className="flex items-center gap-4 w-full px-4 py-3.5 rounded-2xl group transition-all duration-300"
+                  style={{
+                    background: `${link.bg}`,
+                    border: `1px solid ${link.accent}20`,
+                  }}
+                >
+                  {/* Icon */}
+                  <div
+                    className="w-10 h-10 rounded-xl flex items-center justify-center text-lg flex-shrink-0 transition-all duration-300 group-hover:scale-110"
+                    style={{
+                      background: `${link.accent}20`,
+                      border: `1px solid ${link.accent}40`,
+                      color: link.accent,
+                    }}
+                  >
+                    {link.icon}
+                  </div>
+
+                  {/* Name + handle */}
+                  <div className="flex-1 min-w-0">
+                    <div className="font-bold text-slate-200 text-sm group-hover:text-white transition">
+                      {link.name}
+                    </div>
+                    <div className="text-xs text-slate-600 truncate group-hover:text-slate-500 transition">
+                      {link.handle}
+                    </div>
+                  </div>
+
+                  {/* Arrow */}
+                  <motion.div
+                    className="text-slate-700 group-hover:text-slate-300 transition"
+                    animate={{ x: [0, 3, 0] }}
+                    transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                  >
+                    <HiArrowRight className="text-lg" />
+                  </motion.div>
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+        ))}
+
+        {/* Bottom note */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-center text-slate-700 text-xs pt-4"
+        >
+          Prefer AI? Use the chat bubble below to ask anything about me ↘
+        </motion.p>
       </section>
     </main>
   );
