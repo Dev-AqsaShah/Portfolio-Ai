@@ -48,7 +48,7 @@ const categories = [
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen bg-[#050510] overflow-hidden">
+    <main className="min-h-screen overflow-hidden">
       {/* Banner */}
       <div className="w-full py-3 overflow-hidden relative"
         style={{ background: "linear-gradient(90deg, rgba(168,85,247,0.5), rgba(6,182,212,0.3), rgba(168,85,247,0.5))" }}>

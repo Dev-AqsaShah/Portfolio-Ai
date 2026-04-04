@@ -299,7 +299,7 @@ export default function ProjectsPage() {
   const rest = filtered.filter((p) => !p.featured);
 
   return (
-    <main className="relative min-h-screen bg-[#050510] overflow-hidden">
+    <main className="relative min-h-screen overflow-hidden">
 
       {/* Ambient */}
       <div className="pointer-events-none fixed inset-0">

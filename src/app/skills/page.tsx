@@ -75,7 +75,7 @@ export default function SkillsPage() {
   }, {} as Record<string, number>);
 
   return (
-    <main className="min-h-screen bg-[#050510] overflow-hidden">
+    <main className="min-h-screen overflow-hidden">
 
       {/* Banner */}
       <div className="w-full py-3 overflow-hidden relative"

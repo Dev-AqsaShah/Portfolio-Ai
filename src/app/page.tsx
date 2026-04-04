@@ -68,7 +68,7 @@ export default function HomePage() {
   }, [displayed, deleting, roleIdx]);
 
   return (
-    <main className="min-h-screen bg-[#050510]">
+    <main className="min-h-screen">
 
       {/* ── HERO ─────────────────────────────────────────────── */}
       <motion.section
@@ -127,7 +127,7 @@ export default function HomePage() {
                 className="flex items-center gap-2 text-xl md:text-2xl font-bold"
               >
                 <span className="text-slate-500">I&apos;m a</span>
-                <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent min-w-[220px]">
+                <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent min-w-[160px] sm:min-w-[220px]">
                   {displayed}
                 </span>
                 <span className="text-purple-400 animate-pulse">|</span>
@@ -199,7 +199,7 @@ export default function HomePage() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1 }}
-                className="grid grid-cols-4 gap-3 pt-2"
+                className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2"
               >
                 {stats.map((s) => (
                   <div key={s.label} className="text-center p-2.5 rounded-xl"

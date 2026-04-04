@@ -73,7 +73,7 @@ export default function About() {
   const [flipped, setFlipped] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#050510] text-slate-100 overflow-hidden">
+    <div className="min-h-screen text-slate-100 overflow-hidden">
 
       {/* Banner */}
       <div className="w-full py-3 overflow-hidden relative"

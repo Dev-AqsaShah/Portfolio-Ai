@@ -60,7 +60,7 @@ const education = [
 
 export default function ExperiencePage() {
   return (
-    <main className="min-h-screen bg-[#050510] overflow-hidden">
+    <main className="min-h-screen overflow-hidden">
       {/* Banner */}
       <div className="w-full py-3 overflow-hidden relative"
         style={{ background: "linear-gradient(90deg, rgba(6,182,212,0.4), rgba(88,28,135,0.8), rgba(6,182,212,0.4))" }}>

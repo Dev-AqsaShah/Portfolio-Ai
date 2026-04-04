@@ -38,13 +38,13 @@ export default function AnimatedBackground() {
     const spawn = (): Particle => ({
       x: Math.random() * window.innerWidth,
       y: Math.random() * window.innerHeight,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5) * 0.4,
-      radius: Math.random() * 1.8 + 0.8,
+      vx: (Math.random() - 0.5) * 1.6,
+      vy: (Math.random() - 0.5) * 1.6,
+      radius: Math.random() * 1.4 + 0.8,
       color: COLORS[Math.floor(Math.random() * COLORS.length)],
-      opacity: Math.random() * 0.4 + 0.3,
+      opacity: Math.random() * 0.2 + 0.3,
       pulse: Math.random() * Math.PI * 2,
-      pulseSpeed: 0.015 + Math.random() * 0.015,
+      pulseSpeed: 0.02 + Math.random() * 0.02,
     });
 
     const init = () => {
@@ -62,7 +62,7 @@ export default function AnimatedBackground() {
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < CONNECTION_DIST) {
-            const alpha = (1 - dist / CONNECTION_DIST) * 0.25;
+            const alpha = (1 - dist / CONNECTION_DIST) * 0.18;
             const grad = ctx.createLinearGradient(
               particles[i].x, particles[i].y,
               particles[j].x, particles[j].y
@@ -87,9 +87,9 @@ export default function AnimatedBackground() {
 
         // Glow
         ctx.beginPath();
-        ctx.arc(p.x, p.y, r * 4, 0, Math.PI * 2);
-        const glow = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r * 4);
-        glow.addColorStop(0, p.color + "55");
+        ctx.arc(p.x, p.y, r * 2.5, 0, Math.PI * 2);
+        const glow = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r * 2.5);
+        glow.addColorStop(0, p.color + "28");
         glow.addColorStop(1, p.color + "00");
         ctx.fillStyle = glow;
         ctx.fill();
@@ -123,15 +123,14 @@ export default function AnimatedBackground() {
   }, []);
 
   return (
-    <div className="fixed inset-0 -z-10 pointer-events-none">
-      <div className="absolute inset-0 bg-[#050510]" />
+    <div className="fixed inset-0 -z-10 pointer-events-none" style={{ background: "#050510" }}>
       {/* Soft ambient blobs for color depth */}
       <div className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 60% 50% at 15% 20%, rgba(168,85,247,0.12) 0%, transparent 70%), " +
-            "radial-gradient(ellipse 50% 60% at 80% 70%, rgba(6,182,212,0.10) 0%, transparent 70%), " +
-            "radial-gradient(ellipse 40% 40% at 50% 90%, rgba(236,72,153,0.08) 0%, transparent 70%)",
+            "radial-gradient(ellipse 60% 50% at 15% 20%, rgba(168,85,247,0.06) 0%, transparent 70%), " +
+            "radial-gradient(ellipse 50% 60% at 80% 70%, rgba(6,182,212,0.05) 0%, transparent 70%), " +
+            "radial-gradient(ellipse 40% 40% at 50% 90%, rgba(236,72,153,0.04) 0%, transparent 70%)",
         }}
       />
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
