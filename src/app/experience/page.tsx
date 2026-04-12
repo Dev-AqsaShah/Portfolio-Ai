@@ -1,7 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { FaGithub, FaExternalLinkAlt, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import { useState } from "react";
+import { FaGithub, FaExternalLinkAlt, FaCalendarAlt, FaMapMarkerAlt, FaTimes, FaAward } from "react-icons/fa";
 import { MdWork, MdSchool } from "react-icons/md";
 import { TbBrandReactNative } from "react-icons/tb";
 import { SiMongodb, SiExpress, SiNodedotjs } from "react-icons/si";
@@ -33,7 +35,7 @@ const experiences = [
 
 const education = [
   {
-    degree: "Bachelor of Science — Computer Science",
+    degree: "BS in Computer Science (CS)",
     institute: "University of Sindh, Jamshoro",
     duration: "2nd Year (In Progress)",
     status: "Ongoing",
@@ -43,22 +45,24 @@ const education = [
   {
     degree: "Generative AI, Web3 & Metaverse",
     institute: "Governor Sindh Initiative for GenAI, Web3 & Metaverse",
-    duration: "3rd Year (Ongoing)",
+    duration: "4th Quarter (Last)",
     status: "Gov. Initiative",
-    detail: "GenAI, Web3, Cloud-Native Computing, Smart Contracts, DAOs & Blockchain. Free government-funded program. Currently in 4th Quarter (Final).",
+    detail: "GenAI, Web3, Cloud-Native Computing, Smart Contracts, DAOs & Blockchain. Free government-funded program. Currently in 4th Quarter (Last).",
     color: "from-cyan-500 to-blue-500",
   },
   {
     degree: "AI, Cloud Computing & Blockchain",
     institute: "PIAIC — Presidential Initiative for AI & Computing",
-    duration: "3rd Year (Ongoing)",
+    duration: "Quarter 6 of 7 (Ongoing)",
     status: "PIAIC",
-    detail: "Artificial Intelligence, Machine Learning, Cloud Computing, Blockchain, IoT & Data Science. 4-quarter annual program across 28 cities of Pakistan. Currently in 6th Quarter (2nd Last).",
+    detail: "Artificial Intelligence, Machine Learning, Cloud Computing, Blockchain, IoT & Data Science. 7-quarter program across 28 cities of Pakistan. Currently in 6th Quarter.",
     color: "from-purple-500 to-indigo-500",
   },
 ];
 
 export default function ExperiencePage() {
+  const [certOpen, setCertOpen] = useState(false);
+
   return (
     <main className="min-h-screen overflow-hidden">
       {/* Banner */}
@@ -186,24 +190,20 @@ export default function ExperiencePage() {
                   transition={{ delay: 0.3 }}
                   className="mt-6 pt-6 border-t border-purple-500/20"
                 >
-                  <h5 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
-                    <FaExternalLinkAlt className="text-purple-500" />
-                    Internship Certificate
-                  </h5>
-                  <div
-                    className="w-full rounded-xl overflow-hidden flex items-center justify-center py-12"
+                  <motion.button
+                    onClick={() => setCertOpen(true)}
+                    whileHover={{ scale: 1.04 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-xl text-sm font-bold text-white"
                     style={{
-                      background: "rgba(168,85,247,0.05)",
-                      border: "1px dashed rgba(168,85,247,0.3)",
+                      background: "linear-gradient(135deg, rgba(168,85,247,0.8), rgba(6,182,212,0.7))",
+                      border: "1px solid rgba(168,85,247,0.4)",
+                      boxShadow: "0 0 20px rgba(168,85,247,0.25)",
                     }}
                   >
-                    {/* Replace the div below with an <Image> tag once you add certificate to /public/assets/certificate.jpg */}
-                    <div className="text-center space-y-2">
-                      <div className="text-4xl">📜</div>
-                      <p className="text-slate-500 text-sm">3PL Dynamics Internship Certificate</p>
-                      <p className="text-slate-600 text-xs">Add certificate image to /public/assets/certificate.jpg</p>
-                    </div>
-                  </div>
+                    <FaAward className="text-yellow-300 text-base" />
+                    View Certificate
+                  </motion.button>
                 </motion.div>
               )}
             </motion.div>
@@ -257,6 +257,61 @@ export default function ExperiencePage() {
           </div>
         </section>
       </div>
+
+      {/* Certificate Modal */}
+      <AnimatePresence>
+        {certOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setCertOpen(false)}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            style={{ background: "rgba(5,5,16,0.92)", backdropFilter: "blur(18px)" }}
+          >
+            <motion.div
+              initial={{ scale: 0.85, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.85, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 260, damping: 22 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative rounded-2xl overflow-hidden"
+              style={{
+                maxWidth: "680px",
+                width: "100%",
+                border: "1px solid rgba(168,85,247,0.4)",
+                boxShadow: "0 0 60px rgba(168,85,247,0.25), 0 20px 60px rgba(0,0,0,0.6)",
+              }}
+            >
+              {/* top glow line */}
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-400/80 to-transparent z-10" />
+
+              <Image
+                src="/assets/certificate.jpg"
+                alt="3PL Dynamics Internship Certificate"
+                width={680}
+                height={480}
+                className="w-full h-auto object-contain"
+              />
+
+              {/* bottom bar */}
+              <div className="flex items-center justify-between px-4 py-3"
+                style={{ background: "rgba(10,5,25,0.9)", backdropFilter: "blur(10px)" }}>
+                <div className="flex items-center gap-2">
+                  <FaAward className="text-yellow-400" />
+                  <span className="text-sm font-semibold text-slate-200">3PL Dynamics — Internship Certificate</span>
+                </div>
+                <button
+                  onClick={() => setCertOpen(false)}
+                  className="w-8 h-8 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition"
+                >
+                  <FaTimes />
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }

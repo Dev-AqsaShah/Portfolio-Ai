@@ -2,11 +2,10 @@
 
 import { motion, useMotionValue, useTransform, AnimatePresence } from "framer-motion";
 import { useState, useRef } from "react";
-import { FaGithub, FaExternalLinkAlt, FaTimes, FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import { RiRobot2Line } from "react-icons/ri";
 import { MdOutlineCode } from "react-icons/md";
 import { Sparkles } from "lucide-react";
-import Image from "next/image";
 
 const projects = [
   {
@@ -19,6 +18,7 @@ const projects = [
     tech: ["Claude Sonnet 4.6", "FastAPI", "Docker", "Kubernetes", "Kafka", "PostgreSQL", "pgvector", "Next.js"],
     link: "https://github.com/Dev-AqsaShah/Final-Hackathon-5",
     github: "https://github.com/Dev-AqsaShah/Final-Hackathon-5",
+    liveLink: "https://www.linkedin.com/posts/aqsa-shah-_ai-hackathon-generativeai-ugcPost-7445498820374900736-JWgD?utm_source=share&utm_medium=member_android&rcm=ACoAAEvQqj8BNo5cEv82-wXcnVkb9kDKOU9e1cA",
     gradient: "from-purple-600 via-violet-600 to-cyan-600",
     glow: "rgba(168,85,247,0.6)",
     images: [],
@@ -33,6 +33,7 @@ const projects = [
     tech: ["Claude Code", "Anthropic API", "Playwright", "Docker", "PostgreSQL", "Odoo ERP"],
     link: "https://github.com/Dev-AqsaShah/AI-Employee",
     github: "https://github.com/Dev-AqsaShah/AI-Employee",
+    liveLink: "https://www.linkedin.com/posts/aqsa-shah-_aiemployee-hackathon0-giaic-ugcPost-7449147280470917120-luzd",
     gradient: "from-violet-600 to-purple-600",
     glow: "rgba(139,92,246,0.5)",
     images: [],
@@ -155,10 +156,9 @@ const FILTERS = ["All", "AI", "Web"] as const;
 type Filter = typeof FILTERS[number];
 
 // 3D Tilt Card
-function TiltCard({ project, index, onImageClick }: {
+function TiltCard({ project, index }: {
   project: typeof projects[0];
   index: number;
-  onImageClick: (imgs: string[]) => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
@@ -249,41 +249,39 @@ function TiltCard({ project, index, onImageClick }: {
         </div>
 
         {/* Buttons */}
-        <div className="relative z-10 flex gap-2 flex-wrap">
-          <motion.a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r ${project.gradient}`}
-          >
-            <FaExternalLinkAlt className="text-[10px]" />
-            {project.images.length === 0 ? "GitHub" : "Live"}
-          </motion.a>
-          {project.link !== project.github && (
-            <motion.a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold border border-white/10 text-slate-400 hover:text-white hover:border-white/20 transition"
-            >
-              <FaGithub /> Code
-            </motion.a>
-          )}
-          {project.images.length > 0 && (
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => onImageClick(project.images)}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold border border-white/10 text-slate-400 hover:text-white hover:border-white/20 transition"
-            >
-              Screenshots
-            </motion.button>
-          )}
-        </div>
+        {(() => {
+          const liveUrl = ("liveLink" in project && project.liveLink)
+            ? project.liveLink as string
+            : project.link !== project.github
+              ? project.link
+              : null;
+          return (
+            <div className="relative z-10 flex gap-2 flex-wrap">
+              {liveUrl && (
+                <motion.a
+                  href={liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r ${project.gradient}`}
+                >
+                  <FaExternalLinkAlt className="text-[10px]" /> View Live
+                </motion.a>
+              )}
+              <motion.a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold border border-white/10 text-slate-400 hover:text-white hover:border-white/20 transition"
+              >
+                <FaGithub /> GitHub
+              </motion.a>
+            </div>
+          );
+        })()}
       </div>
     </motion.div>
   );
@@ -291,8 +289,6 @@ function TiltCard({ project, index, onImageClick }: {
 
 export default function ProjectsPage() {
   const [filter, setFilter] = useState<Filter>("All");
-  const [activeImages, setActiveImages] = useState<string[] | null>(null);
-  const [imgIndex, setImgIndex] = useState(0);
 
   const filtered = filter === "All" ? projects : projects.filter((p) => p.type === filter);
   const featured = filtered.find((p) => p.featured);
@@ -380,7 +376,7 @@ export default function ProjectsPage() {
             {/* Featured card — full width */}
             {featured && (
               <motion.div className="mb-6 relative group" style={{ perspective: 1000 }}>
-                <TiltCard project={featured} index={0} onImageClick={(imgs) => { setActiveImages(imgs); setImgIndex(0); }} />
+                <TiltCard project={featured} index={0} />
 
                 {/* Featured glow line */}
                 <motion.div
@@ -399,7 +395,6 @@ export default function ProjectsPage() {
                   key={p.id}
                   project={p}
                   index={i + 1}
-                  onImageClick={(imgs) => { setActiveImages(imgs); setImgIndex(0); }}
                 />
               ))}
             </div>
@@ -407,49 +402,6 @@ export default function ProjectsPage() {
         </AnimatePresence>
       </div>
 
-      {/* Image Modal */}
-      <AnimatePresence>
-        {activeImages && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex flex-col justify-center items-center p-4"
-            style={{ background: "rgba(5,5,16,0.96)", backdropFilter: "blur(20px)" }}
-          >
-            <button
-              className="absolute top-6 right-6 w-10 h-10 rounded-full flex items-center justify-center text-white border border-white/10 hover:border-purple-500/50 hover:bg-purple-500/10 transition"
-              onClick={() => setActiveImages(null)}
-            >
-              <FaTimes />
-            </button>
-            <div className="relative w-full max-w-3xl">
-              <Image
-                src={activeImages[imgIndex]}
-                alt="Screenshot"
-                width={1200} height={800}
-                className="w-full h-auto max-h-[80vh] rounded-2xl object-contain"
-                style={{ boxShadow: "0 0 80px rgba(168,85,247,0.3)" }}
-                priority
-              />
-              <button onClick={() => setImgIndex((p) => (p - 1 + activeImages.length) % activeImages.length)}
-                className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-purple-600/80 text-white flex items-center justify-center hover:bg-purple-500 transition">
-                <FaArrowLeft className="text-sm" />
-              </button>
-              <button onClick={() => setImgIndex((p) => (p + 1) % activeImages.length)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-purple-600/80 text-white flex items-center justify-center hover:bg-purple-500 transition">
-                <FaArrowRight className="text-sm" />
-              </button>
-            </div>
-            <div className="flex gap-2 mt-4">
-              {activeImages.map((_, i) => (
-                <button key={i} onClick={() => setImgIndex(i)}
-                  className={`w-2 h-2 rounded-full transition ${i === imgIndex ? "bg-purple-400 scale-125" : "bg-slate-600"}`} />
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </main>
   );
 }
