@@ -201,18 +201,6 @@ export default function SkillsPage() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Legend note for learning */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-center text-slate-700 text-xs mt-8"
-        >
-          <span className="inline-flex items-center gap-1.5">
-            <Sparkles className="w-3 h-3 text-yellow-500" />
-            Badges marked &quot;Learning&quot; are currently being studied
-          </span>
-        </motion.p>
       </section>
     </main>
   );

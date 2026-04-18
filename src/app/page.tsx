@@ -188,7 +188,7 @@ export default function HomePage() {
                 <a href="https://www.linkedin.com/in/aqsa-shah-" target="_blank" rel="noopener noreferrer"
                   className="text-slate-500 hover:text-cyan-400 transition text-xl"><FaLinkedin /></a>
                 <div className="w-px h-5 bg-slate-800" />
-                <a href="/assets/AqsaShah_Resume.pdf.pdf" target="_blank" rel="noopener noreferrer"
+                <a href="/resume" target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-purple-400 transition">
                   <ExternalLink className="w-3.5 h-3.5" /> Resume
                 </a>

@@ -61,7 +61,7 @@ export default function Navbar() {
 
         {/* Resume buttons */}
         <div className="hidden sm:flex items-center gap-2">
-          <a href="/assets/AqsaShah_Resume.pdf.pdf" target="_blank" rel="noopener noreferrer">
+          <a href="/resume" target="_blank" rel="noopener noreferrer">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -70,7 +70,7 @@ export default function Navbar() {
               <FaFileAlt /> Resume
             </motion.button>
           </a>
-          <a href="/assets/AqsaShah_Resume.pdf.pdf" download>
+          <a href="/resume" download>
             <motion.button
               whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(168,85,247,0.5)" }}
               whileTap={{ scale: 0.95 }}
@@ -141,12 +141,12 @@ export default function Navbar() {
             ))}
 
             <div className="pt-2 space-y-2">
-              <a href="/assets/AqsaShah_Resume.pdf.pdf" target="_blank" rel="noopener noreferrer">
+              <a href="/resume" target="_blank" rel="noopener noreferrer">
                 <button className="w-full py-2.5 rounded-xl text-sm font-bold border border-purple-500/40 text-purple-300 hover:bg-purple-500/10 transition">
                   View Resume
                 </button>
               </a>
-              <a href="/assets/AqsaShah_Resume.pdf.pdf" download>
+              <a href="/resume" download>
                 <button className="w-full py-2.5 rounded-xl text-sm font-bold text-white"
                   style={{ background: "linear-gradient(135deg, #a855f7, #06b6d4)" }}>
                   Download Resume
