@@ -7,7 +7,7 @@ import { RiRobot2Line } from "react-icons/ri";
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden"
+    <footer className="relative overflow-hidden no-print"
       style={{ background: "rgba(5,5,16,1)", borderTop: "1px solid rgba(168,85,247,0.15)" }}>
 
       {/* Ambient glow */}

@@ -118,7 +118,7 @@ const projects = [
     tech: ["Next.js", "TypeScript", "Python", "Anthropic API", "Docker", "Kubernetes", "Tailwind CSS", "Dapr"],
     link: "https://github.com/Dev-AqsaShah/hackathon-2",
     github: "https://github.com/Dev-AqsaShah/hackathon-2",
-    liveLink: "",
+    liveLink: "https://www.linkedin.com/posts/aqsa-shah-_ai-hackathon-openai-ugcPost-7424106187467452416-S8SQ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEvQqj8BNo5cEv82-wXcnVkb9kDKOU9e1cA",
     gradient: "from-amber-600 to-orange-600",
     glow: "rgba(251,146,60,0.5)",
     images: [],

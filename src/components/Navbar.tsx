@@ -24,7 +24,7 @@ export default function Navbar() {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed w-full z-50"
+      className="fixed w-full z-50 no-print"
       style={{
         background: "rgba(5,5,16,0.85)",
         backdropFilter: "blur(20px)",

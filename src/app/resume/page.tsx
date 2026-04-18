@@ -1,26 +1,33 @@
 "use client";
 
-import { useRef } from "react";
+import React from "react";
 
 export default function ResumePage() {
-  const resumeRef = useRef<HTMLDivElement>(null);
-
   const handlePrint = () => window.print();
 
   return (
     <>
-      {/* Print CSS */}
+      {/* Print + Responsive CSS */}
       <style>{`
         @media print {
           .no-print { display: none !important; }
-          body { background: white !important; }
-          .resume-root { box-shadow: none !important; margin: 0 !important; padding: 0 !important; max-width: 100% !important; }
-          @page { margin: 0.5in; size: A4; }
+          body { background: white !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+          .resume-root { box-shadow: none !important; border-radius: 0 !important; max-width: 100% !important; }
+          .resume-columns { grid-template-columns: 1fr 1fr !important; }
+          @page { margin: 0; size: A4; }
+        }
+        @media (max-width: 640px) {
+          .resume-columns { grid-template-columns: 1fr !important; }
+          .resume-header-contacts { flex-direction: column; gap: 6px !important; }
+          .resume-root { font-size: 12px !important; border-radius: 0 !important; }
+          .resume-header { padding: 20px 18px 16px !important; }
+          .resume-body { padding: 16px 18px !important; }
+          .resume-footer { padding: 8px 18px !important; flex-direction: column; gap: 2px; }
         }
       `}</style>
 
       {/* Download Button */}
-      <div className="no-print flex justify-center pt-8 pb-4 gap-3">
+      <div className="no-print flex justify-center pt-8 pb-4 gap-3 flex-wrap px-4">
         <button
           onClick={handlePrint}
           className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold text-white"
@@ -34,9 +41,8 @@ export default function ResumePage() {
       </div>
 
       {/* Resume */}
-      <div className="flex justify-center pb-16 px-4">
+      <div className="flex justify-center pb-16 px-2 sm:px-4">
         <div
-          ref={resumeRef}
           className="resume-root w-full"
           style={{
             maxWidth: "794px",
@@ -51,12 +57,12 @@ export default function ResumePage() {
           }}
         >
           {/* Header */}
-          <div style={{ background: "linear-gradient(135deg,#1a0533,#0c1a2e)", padding: "28px 36px 22px", color: "#fff" }}>
+          <div className="resume-header" style={{ background: "linear-gradient(135deg,#1a0533,#0c1a2e)", padding: "28px 36px 22px", color: "#fff" }}>
             <h1 style={{ fontSize: "28px", fontWeight: 800, margin: 0, letterSpacing: "-0.5px" }}>Aqsa Shah</h1>
             <p style={{ margin: "4px 0 12px", fontSize: "14px", color: "#c4b5fd", fontWeight: 600 }}>
               AI Engineer &amp; Full Stack Developer
             </p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "14px", fontSize: "12px", color: "#cbd5e1" }}>
+            <div className="resume-header-contacts" style={{ display: "flex", flexWrap: "wrap", gap: "14px", fontSize: "12px", color: "#cbd5e1" }}>
               <span>📧 aqsashah000000@gmail.com</span>
               <span>🔗 github.com/Dev-AqsaShah</span>
               <span>💼 linkedin.com/in/aqsa-shah-</span>
@@ -64,7 +70,7 @@ export default function ResumePage() {
             </div>
           </div>
 
-          <div style={{ padding: "24px 36px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 28px" }}>
+          <div className="resume-body resume-columns" style={{ padding: "24px 36px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 28px" }}>
 
             {/* LEFT COLUMN */}
             <div>
@@ -202,7 +208,7 @@ export default function ResumePage() {
           </div>
 
           {/* Footer */}
-          <div style={{ background: "#f8f7ff", borderTop: "2px solid #ede9fe", padding: "10px 36px", display: "flex", justifyContent: "space-between", fontSize: "11px", color: "#6b7280" }}>
+          <div className="resume-footer" style={{ background: "#f8f7ff", borderTop: "2px solid #ede9fe", padding: "10px 36px", display: "flex", justifyContent: "space-between", fontSize: "11px", color: "#6b7280" }}>
             <span>github.com/Dev-AqsaShah · linkedin.com/in/aqsa-shah-</span>
             <span>aqsashah000000@gmail.com</span>
           </div>
