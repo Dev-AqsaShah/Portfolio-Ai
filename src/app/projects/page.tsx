@@ -40,16 +40,16 @@ const projects = [
   },
   {
     id: 3,
-    type: "AI",
+    type: "Web",
     featured: false,
-    title: "Agentic AI Collection",
-    short: "Multi-Agent AI Systems",
-    desc: "Collection of multi-agent AI implementations: knowledge graph agent, weather agent, object detection, Chainlit conversational UI, guardrails & more. Full exploration of OpenAI Agents SDK + Anthropic ecosystem.",
-    tech: ["Python", "Chainlit", "OpenAI Agents SDK", "Anthropic API", "Guardrails"],
-    link: "https://github.com/Dev-AqsaShah/Agentic-Ai-projects",
-    github: "https://github.com/Dev-AqsaShah/Agentic-Ai-projects",
-    gradient: "from-cyan-600 to-blue-600",
-    glow: "rgba(6,182,212,0.5)",
+    title: "GPS Tracking System",
+    short: "Real-Time Location & Geofencing",
+    desc: "Full-stack GPS tracking system with a Next.js backend (Prisma ORM) and a React Native + Expo mobile app. Features real-time location tracking, geofencing with boundary detection, background task management, and context-based state handling across mobile screens.",
+    tech: ["Next.js", "React Native", "Expo", "TypeScript", "Prisma", "Geofencing"],
+    link: "https://github.com/Dev-AqsaShah/gps-tracking-system",
+    github: "https://github.com/Dev-AqsaShah/gps-tracking-system",
+    gradient: "from-emerald-600 to-teal-600",
+    glow: "rgba(20,184,166,0.5)",
     images: [],
   },
   {
@@ -60,7 +60,7 @@ const projects = [
     short: "Write. Publish. Explore.",
     desc: "Blog platform with user auth, rich text editor, dark mode & full CRUD. Built with Next.js App Router, MongoDB for persistence and TypeScript throughout.",
     tech: ["Next.js", "MongoDB", "TypeScript", "Tailwind CSS"],
-    link: "https://m-4-blog-web.vercel.app/",
+    link: "https://blog-web-git-main-aqsas-projects-e884ad45.vercel.app/",
     github: "https://github.com/Dev-AqsaShah/m-4-blog-web",
     gradient: "from-pink-600 to-rose-600",
     glow: "rgba(236,72,153,0.5)",
@@ -251,24 +251,28 @@ function TiltCard({ project, index }: {
 
         {/* Buttons */}
         {(() => {
-          const liveUrl = ("liveLink" in project && project.liveLink)
+          const demoUrl = ("liveLink" in project && project.liveLink)
             ? project.liveLink as string
             : project.link !== project.github
               ? project.link
               : null;
           return (
             <div className="relative z-10 flex gap-2 flex-wrap">
-              {liveUrl && (
+              {demoUrl ? (
                 <motion.a
-                  href={liveUrl}
+                  href={demoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r ${project.gradient}`}
                 >
-                  <FaExternalLinkAlt className="text-[10px]" /> View Live
+                  <FaExternalLinkAlt className="text-[10px]" /> Demo
                 </motion.a>
+              ) : (
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 border border-white/5 cursor-not-allowed">
+                  <FaExternalLinkAlt className="text-[10px]" /> Demo
+                </span>
               )}
               <motion.a
                 href={project.github}
