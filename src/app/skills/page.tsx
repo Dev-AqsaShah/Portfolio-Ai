@@ -14,7 +14,6 @@ import { MdOutlineSmartToy, MdOutlineMemory, MdOutlineTerminal, MdOutlineAccount
 import { TbBrandReactNative } from "react-icons/tb";
 import { FaDatabase } from "react-icons/fa";
 import { RiRobot2Line } from "react-icons/ri";
-import { Sparkles } from "lucide-react";
 
 const CATS = [
   { id: "all",      label: "All",        emoji: "✦", color: "#a855f7" },

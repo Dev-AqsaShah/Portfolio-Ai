@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
-import { FaGithub, FaExternalLinkAlt, FaCalendarAlt, FaMapMarkerAlt, FaTimes, FaAward } from "react-icons/fa";
+import { FaGithub, FaCalendarAlt, FaMapMarkerAlt, FaTimes, FaAward } from "react-icons/fa";
 import { MdWork, MdSchool } from "react-icons/md";
 import { TbBrandReactNative } from "react-icons/tb";
 import { SiMongodb, SiExpress, SiNodedotjs } from "react-icons/si";
