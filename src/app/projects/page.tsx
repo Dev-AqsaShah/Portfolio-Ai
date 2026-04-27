@@ -48,6 +48,7 @@ const projects = [
     tech: ["Next.js", "React Native", "Expo", "TypeScript", "Prisma", "Geofencing"],
     link: "https://github.com/Dev-AqsaShah/gps-tracking-system",
     github: "https://github.com/Dev-AqsaShah/gps-tracking-system",
+    liveLink: "https://youtube.com/shorts/ObmvuJWTf2k?si=X6s1Jy4v6GMqOw4D",
     gradient: "from-emerald-600 to-teal-600",
     glow: "rgba(20,184,166,0.5)",
     images: [],
