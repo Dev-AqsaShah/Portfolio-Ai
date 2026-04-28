@@ -60,7 +60,7 @@ export default function Navbar() {
         </div>
 
         {/* Resume buttons */}
-        <div className="hidden sm:flex items-center gap-2">
+        <div className="hidden md:flex items-center gap-2">
           <a href="/resume" target="_blank" rel="noopener noreferrer">
             <motion.button
               whileHover={{ scale: 1.05 }}
