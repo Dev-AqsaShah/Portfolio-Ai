@@ -22,6 +22,7 @@ body {
   background: #050510;
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 /* Scrollbar */

@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function ChatBubble() {
   return (
-    <div className="chat-bubble-root fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-3">
+    <div className="chat-bubble-root fixed bottom-4 right-3 sm:bottom-6 sm:right-6 z-[100] flex flex-col items-end gap-3">
 
       {/* Tooltip */}
       <motion.div
